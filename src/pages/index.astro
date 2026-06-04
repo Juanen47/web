@@ -3,7 +3,7 @@ import '../styles/global.css';
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,17 +16,18 @@ import '../styles/global.css';
 
   <nav>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><button id="translate-btn" class="translate-btn">EN</button></li>
     </ul>
   </nav>
 
   <div class="hero">
-    <p class="hero-tag">SYSADMIN · HOMELAB · CYBERSECURITY</p>
+    <p class="hero-tag">SYSADMIN · HOMELAB · CIBERSEGURIDAD</p>
     <h1>JELOPEZ<span class="accent">.</span>LINK</h1>
-    <p class="hero-sub">
-      Systems administrator and IT infrastructure specialist.
-      Self-hosting everything I can and documenting the journey.
+    <p class="hero-sub" id="hero-sub">
+      Administrador de sistemas e infraestructura IT.
+      Self-hosting todo lo que puedo y documentando el proceso.
     </p>
     <div class="hero-buttons">
       <a href="https://github.com/Juanen47" target="_blank" class="btn btn-outline">GitHub</a>
@@ -35,47 +36,47 @@ import '../styles/global.css';
     </div>
   </div>
 
-  <section id="about">
-    <h2 class="section-title">About</h2>
-    <div class="about-text">
-      25 y/o sysadmin from Albacete, Spain. Higher Technician in Systems Administration and Cybersecurity.
-      Currently working in systems administration and IT infrastructure — servers, networks, security.
-      Outside work I run a homelab on Proxmox where I self-host and document everything.
-      Focused on Cybersecurity, Azure and AI applied to real work.
-      <a href="https://blog.jelopez.link/sobre-mi"> More about me →</a>
+  <section id="sobre-mi">
+    <h2 class="section-title">Sobre mí</h2>
+    <div class="about-text" id="about-text">
+      25 años, sysadmin de Albacete. Técnico Superior en Administración de Sistemas y Ciberseguridad.
+      Trabajo en administración de sistemas e infraestructura IT — servidores, redes, seguridad.
+      Fuera del trabajo mantengo un homelab en Proxmox donde hago self-hosting y lo documento todo.
+      Enfocado en Ciberseguridad, Azure e IA aplicada al trabajo real.
+      <a href="https://blog.jelopez.link/about"> Más sobre mí →</a>
     </div>
     <div class="cards">
       <div class="card">
-        <h3>Infrastructure</h3>
-        <p>Proxmox VE, LXC, WireGuard, Cloudflare Tunnel, NPMplus, AdGuard Home, Authelia.</p>
+        <h3 id="card-1-title">Infraestructura</h3>
+        <p id="card-1-text">Proxmox VE, LXC, WireGuard, Cloudflare Tunnel, NPMplus, AdGuard Home, Authelia.</p>
       </div>
       <div class="card">
-        <h3>Systems</h3>
-        <p>Linux administration, networking, DNS, security hardening, monitoring.</p>
+        <h3 id="card-2-title">Sistemas</h3>
+        <p id="card-2-text">Administración Linux, redes, DNS, seguridad, monitorización.</p>
       </div>
       <div class="card">
-        <h3>Approach</h3>
-        <p>Document everything. Automate what's repetitive. Keep it simple and reproducible.</p>
+        <h3 id="card-3-title">Enfoque</h3>
+        <p id="card-3-text">Documentar todo. Automatizar lo repetitivo. Simple y reproducible.</p>
       </div>
     </div>
   </section>
 
-  <section id="projects">
-    <h2 class="section-title">Projects</h2>
+  <section id="proyectos">
+    <h2 class="section-title">Proyectos</h2>
     <div class="projects-grid">
       <a href="https://blog.jelopez.link" class="project-card">
         <div class="project-header">
           <h3>Homelab Blog</h3>
           <span class="tag">Blog · ES</span>
         </div>
-        <p>Documentación técnica del homelab. Proxmox, networking, servicios self-hosted y seguridad.</p>
+        <p id="blog-desc">Documentación técnica del homelab. Proxmox, networking, servicios self-hosted y seguridad.</p>
       </a>
       <div class="project-card disabled">
         <div class="project-header">
-          <h3>More coming</h3>
+          <h3 id="coming-title">Próximamente</h3>
           <span class="tag">Soon</span>
         </div>
-        <p>More projects on the way.</p>
+        <p id="coming-desc">Más proyectos en camino.</p>
       </div>
     </div>
   </section>
@@ -91,3 +92,96 @@ import '../styles/global.css';
 
 </body>
 </html>
+
+<script>
+  const btn = document.getElementById('translate-btn') as HTMLButtonElement;
+
+  let translated = false;
+
+  const elements = [
+    { id: 'hero-sub', es: 'Administrador de sistemas e infraestructura IT. Self-hosting todo lo que puedo y documentando el proceso.', en: 'Systems administrator and IT infrastructure specialist. Self-hosting everything I can and documenting the journey.' },
+    { id: 'about-text', es: '25 años, sysadmin de Albacete. Técnico Superior en Administración de Sistemas y Ciberseguridad. Trabajo en administración de sistemas e infraestructura IT — servidores, redes, seguridad. Fuera del trabajo mantengo un homelab en Proxmox donde hago self-hosting y lo documento todo. Enfocado en Ciberseguridad, Azure e IA aplicada al trabajo real.', en: '25 y/o sysadmin from Albacete, Spain. Higher Technician in Systems Administration and Cybersecurity. Currently working in systems administration and IT infrastructure — servers, networks, security. Outside work I run a homelab on Proxmox where I self-host and document everything. Focused on Cybersecurity, Azure and AI applied to real work.' },
+    { id: 'card-1-title', es: 'Infraestructura', en: 'Infrastructure' },
+    { id: 'card-1-text', es: 'Proxmox VE, LXC, WireGuard, Cloudflare Tunnel, NPMplus, AdGuard Home, Authelia.', en: 'Proxmox VE, LXC, WireGuard, Cloudflare Tunnel, NPMplus, AdGuard Home, Authelia.' },
+    { id: 'card-2-title', es: 'Sistemas', en: 'Systems' },
+    { id: 'card-2-text', es: 'Administración Linux, redes, DNS, seguridad, monitorización.', en: 'Linux administration, networking, DNS, security hardening, monitoring.' },
+    { id: 'card-3-title', es: 'Enfoque', en: 'Approach' },
+    { id: 'card-3-text', es: 'Documentar todo. Automatizar lo repetitivo. Simple y reproducible.', en: 'Document everything. Automate what\'s repetitive. Keep it simple and reproducible.' },
+    { id: 'blog-desc', es: 'Documentación técnica del homelab. Proxmox, networking, servicios self-hosted y seguridad.', en: 'Technical homelab documentation. Proxmox, networking, self-hosted services and security.' },
+    { id: 'coming-title', es: 'Próximamente', en: 'More coming' },
+    { id: 'coming-desc', es: 'Más proyectos en camino.', en: 'More projects on the way.' },
+  ];
+
+  const sectionTitles = [
+    { selector: '#sobre-mi .section-title', es: 'Sobre mí', en: 'About' },
+    { selector: '#proyectos .section-title', es: 'Proyectos', en: 'Projects' },
+    { selector: '.hero-tag', es: 'SYSADMIN · HOMELAB · CIBERSEGURIDAD', en: 'SYSADMIN · HOMELAB · CYBERSECURITY' },
+  ];
+
+  const navLinks = [
+    { selector: 'a[href="#sobre-mi"]', es: 'Sobre mí', en: 'About' },
+    { selector: 'a[href="#proyectos"]', es: 'Proyectos', en: 'Projects' },
+  ];
+
+  btn?.addEventListener('click', () => {
+    const lang = translated ? 'es' : 'en';
+
+    elements.forEach(({ id, es, en }) => {
+      const el = document.getElementById(id);
+      if (el) {
+        const text = lang === 'en' ? en : es;
+        // preserve the link inside about-text
+        if (id === 'about-text') {
+          const link = el.querySelector('a');
+          el.childNodes.forEach(node => {
+            if (node.nodeType === Node.TEXT_NODE) node.textContent = ' ' + text + ' ';
+          });
+        } else {
+          el.textContent = text;
+        }
+      }
+    });
+
+    sectionTitles.forEach(({ selector, es, en }) => {
+      const el = document.querySelector(selector);
+      if (el) el.textContent = lang === 'en' ? en : es;
+    });
+
+    navLinks.forEach(({ selector, es, en }) => {
+      const el = document.querySelector(selector);
+      if (el) el.textContent = lang === 'en' ? en : es;
+    });
+
+    btn.textContent = translated ? 'EN' : 'ES';
+    translated = !translated;
+  });
+</script>
+
+<style>
+  #translate-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: rgba(232,232,232,0.5);
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 0.25rem 0.6rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    list-style: none;
+  }
+
+  #translate-btn:hover {
+    border-color: #e03030;
+    color: #e03030;
+  }
+
+  .nav-links li {
+    list-style: none;
+  }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 2.2rem; letter-spacing: 0; }
+  }
+</style>
