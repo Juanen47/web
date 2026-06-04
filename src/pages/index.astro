@@ -1,11 +1,93 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import '../styles/global.css';
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juan Enrique López Monteagudo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <p class="hero-tag">SYSADMIN · HOMELAB · CYBERSECURITY</p>
+    <h1>JELOPEZ<span class="accent">.</span>LINK</h1>
+    <p class="hero-sub">
+      Systems administrator and IT infrastructure specialist.
+      Self-hosting everything I can and documenting the journey.
+    </p>
+    <div class="hero-buttons">
+      <a href="https://github.com/Juanen47" target="_blank" class="btn btn-outline">GitHub</a>
+      <a href="https://blog.jelopez.link" class="btn btn-outline">Blog</a>
+      <a href="https://www.linkedin.com/in/juan-enrique-l%C3%B3pez-monteagudo-2063ab305/" target="_blank" class="btn btn-outline">LinkedIn</a>
+    </div>
+  </div>
+
+  <section id="about">
+    <h2 class="section-title">About</h2>
+    <div class="about-text">
+      25 y/o sysadmin from Albacete, Spain. Higher Technician in Systems Administration and Cybersecurity.
+      Currently working in systems administration and IT infrastructure — servers, networks, security.
+      Outside work I run a homelab on Proxmox where I self-host and document everything.
+      Focused on Cybersecurity, Azure and AI applied to real work.
+      <a href="https://blog.jelopez.link/sobre-mi"> More about me →</a>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3>Infrastructure</h3>
+        <p>Proxmox VE, LXC, WireGuard, Cloudflare Tunnel, NPMplus, AdGuard Home, Authelia.</p>
+      </div>
+      <div class="card">
+        <h3>Systems</h3>
+        <p>Linux administration, networking, DNS, security hardening, monitoring.</p>
+      </div>
+      <div class="card">
+        <h3>Approach</h3>
+        <p>Document everything. Automate what's repetitive. Keep it simple and reproducible.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+      <a href="https://blog.jelopez.link" class="project-card">
+        <div class="project-header">
+          <h3>Homelab Blog</h3>
+          <span class="tag">Blog · ES</span>
+        </div>
+        <p>Documentación técnica del homelab. Proxmox, networking, servicios self-hosted y seguridad.</p>
+      </a>
+      <div class="project-card disabled">
+        <div class="project-header">
+          <h3>More coming</h3>
+          <span class="tag">Soon</span>
+        </div>
+        <p>More projects on the way.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://github.com/Juanen47" target="_blank">GitHub</a>
+      <a href="mailto:juanenlopez1459@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/juan-enrique-l%C3%B3pez-monteagudo-2063ab305/" target="_blank">LinkedIn</a>
+    </div>
+    <p>© 2026 Juan Enrique López Monteagudo · jelopez.link</p>
+  </footer>
+
+</body>
+</html>
