@@ -23,7 +23,7 @@ import '../styles/global.css';
   </nav>
 
   <div class="hero">
-    <p class="hero-tag">SYSADMIN · HOMELAB · CIBERSEGURIDAD</p>
+    <p class="hero-tag" id="hero-tag">SYSADMIN · HOMELAB · CIBERSEGURIDAD</p>
     <h1>JELOPEZ<span class="accent">.</span>LINK</h1>
     <p class="hero-sub" id="hero-sub">
       Administrador de sistemas e infraestructura IT.
@@ -37,13 +37,13 @@ import '../styles/global.css';
   </div>
 
   <section id="sobre-mi">
-    <h2 class="section-title">Sobre mí</h2>
+    <h2 class="section-title" id="about-title">Sobre mí</h2>
     <div class="about-text" id="about-text">
       25 años, sysadmin de Albacete. Técnico Superior en Administración de Sistemas y Ciberseguridad.
       Trabajo en administración de sistemas e infraestructura IT — servidores, redes, seguridad.
       Fuera del trabajo mantengo un homelab en Proxmox donde hago self-hosting y lo documento todo.
       Enfocado en Ciberseguridad, Azure e IA aplicada al trabajo real.
-      <a href="https://blog.jelopez.link/about"> Más sobre mí →</a>
+      <a href="https://blog.jelopez.link/about">Más sobre mí →</a>
     </div>
     <div class="cards">
       <div class="card">
@@ -62,7 +62,7 @@ import '../styles/global.css';
   </section>
 
   <section id="proyectos">
-    <h2 class="section-title">Proyectos</h2>
+    <h2 class="section-title" id="projects-title">Proyectos</h2>
     <div class="projects-grid">
       <a href="https://blog.jelopez.link" class="project-card">
         <div class="project-header">
@@ -95,60 +95,58 @@ import '../styles/global.css';
 
 <script>
   const btn = document.getElementById('translate-btn') as HTMLButtonElement;
-
   let translated = false;
 
-  const elements = [
-    { id: 'hero-sub', es: 'Administrador de sistemas e infraestructura IT. Self-hosting todo lo que puedo y documentando el proceso.', en: 'Systems administrator and IT infrastructure specialist. Self-hosting everything I can and documenting the journey.' },
-    { id: 'about-text', es: '25 años, sysadmin de Albacete. Técnico Superior en Administración de Sistemas y Ciberseguridad. Trabajo en administración de sistemas e infraestructura IT — servidores, redes, seguridad. Fuera del trabajo mantengo un homelab en Proxmox donde hago self-hosting y lo documento todo. Enfocado en Ciberseguridad, Azure e IA aplicada al trabajo real.', en: '25 y/o sysadmin from Albacete, Spain. Higher Technician in Systems Administration and Cybersecurity. Currently working in systems administration and IT infrastructure — servers, networks, security. Outside work I run a homelab on Proxmox where I self-host and document everything. Focused on Cybersecurity, Azure and AI applied to real work.' },
-    { id: 'card-1-title', es: 'Infraestructura', en: 'Infrastructure' },
-    { id: 'card-1-text', es: 'Proxmox VE, LXC, WireGuard, Cloudflare Tunnel, NPMplus, AdGuard Home, Authelia.', en: 'Proxmox VE, LXC, WireGuard, Cloudflare Tunnel, NPMplus, AdGuard Home, Authelia.' },
-    { id: 'card-2-title', es: 'Sistemas', en: 'Systems' },
-    { id: 'card-2-text', es: 'Administración Linux, redes, DNS, seguridad, monitorización.', en: 'Linux administration, networking, DNS, security hardening, monitoring.' },
-    { id: 'card-3-title', es: 'Enfoque', en: 'Approach' },
-    { id: 'card-3-text', es: 'Documentar todo. Automatizar lo repetitivo. Simple y reproducible.', en: 'Document everything. Automate what\'s repetitive. Keep it simple and reproducible.' },
-    { id: 'blog-desc', es: 'Documentación técnica del homelab. Proxmox, networking, servicios self-hosted y seguridad.', en: 'Technical homelab documentation. Proxmox, networking, self-hosted services and security.' },
-    { id: 'coming-title', es: 'Próximamente', en: 'More coming' },
-    { id: 'coming-desc', es: 'Más proyectos en camino.', en: 'More projects on the way.' },
-  ];
+  const texts: Record<string, { es: string; en: string }> = {
+    'hero-tag':     { es: 'SYSADMIN · HOMELAB · CIBERSEGURIDAD', en: 'SYSADMIN · HOMELAB · CYBERSECURITY' },
+    'hero-sub':     { es: 'Administrador de sistemas e infraestructura IT. Self-hosting todo lo que puedo y documentando el proceso.', en: 'Systems administrator and IT infrastructure specialist. Self-hosting everything I can and documenting the journey.' },
+    'about-title':  { es: 'Sobre mí', en: 'About' },
+    'card-1-title': { es: 'Infraestructura', en: 'Infrastructure' },
+    'card-1-text':  { es: 'Proxmox VE, LXC, WireGuard, Cloudflare Tunnel, NPMplus, AdGuard Home, Authelia.', en: 'Proxmox VE, LXC, WireGuard, Cloudflare Tunnel, NPMplus, AdGuard Home, Authelia.' },
+    'card-2-title': { es: 'Sistemas', en: 'Systems' },
+    'card-2-text':  { es: 'Administración Linux, redes, DNS, seguridad, monitorización.', en: 'Linux administration, networking, DNS, security hardening, monitoring.' },
+    'card-3-title': { es: 'Enfoque', en: 'Approach' },
+    'card-3-text':  { es: 'Documentar todo. Automatizar lo repetitivo. Simple y reproducible.', en: 'Document everything. Automate what\'s repetitive. Keep it simple and reproducible.' },
+    'projects-title': { es: 'Proyectos', en: 'Projects' },
+    'blog-desc':    { es: 'Documentación técnica del homelab. Proxmox, networking, servicios self-hosted y seguridad.', en: 'Technical homelab documentation. Proxmox, networking, self-hosted services and security.' },
+    'coming-title': { es: 'Próximamente', en: 'More coming' },
+    'coming-desc':  { es: 'Más proyectos en camino.', en: 'More projects on the way.' },
+  };
 
-  const sectionTitles = [
-    { selector: '#sobre-mi .section-title', es: 'Sobre mí', en: 'About' },
-    { selector: '#proyectos .section-title', es: 'Proyectos', en: 'Projects' },
-    { selector: '.hero-tag', es: 'SYSADMIN · HOMELAB · CIBERSEGURIDAD', en: 'SYSADMIN · HOMELAB · CYBERSECURITY' },
-  ];
+  const aboutHTML: Record<string, string> = {
+    es: `25 años, sysadmin de Albacete. Técnico Superior en Administración de Sistemas y Ciberseguridad.
+      Trabajo en administración de sistemas e infraestructura IT — servidores, redes, seguridad.
+      Fuera del trabajo mantengo un homelab en Proxmox donde hago self-hosting y lo documento todo.
+      Enfocado en Ciberseguridad, Azure e IA aplicada al trabajo real.
+      <a href="https://blog.jelopez.link/about">Más sobre mí →</a>`,
+    en: `25 y/o sysadmin from Albacete, Spain. Higher Technician in Systems Administration and Cybersecurity.
+      Currently working in systems administration and IT infrastructure — servers, networks, security.
+      Outside work I run a homelab on Proxmox where I self-host and document everything.
+      Focused on Cybersecurity, Azure and AI applied to real work.
+      <a href="https://blog.jelopez.link/about">More about me →</a>`,
+  };
 
-  const navLinks = [
-    { selector: 'a[href="#sobre-mi"]', es: 'Sobre mí', en: 'About' },
-    { selector: 'a[href="#proyectos"]', es: 'Proyectos', en: 'Projects' },
-  ];
+  const navLinks: Record<string, { es: string; en: string }> = {
+    '#sobre-mi': { es: 'Sobre mí', en: 'About' },
+    '#proyectos': { es: 'Proyectos', en: 'Projects' },
+  };
 
   btn?.addEventListener('click', () => {
     const lang = translated ? 'es' : 'en';
 
-    elements.forEach(({ id, es, en }) => {
+    // Textos simples
+    Object.entries(texts).forEach(([id, { es, en }]) => {
       const el = document.getElementById(id);
-      if (el) {
-        const text = lang === 'en' ? en : es;
-        // preserve the link inside about-text
-        if (id === 'about-text') {
-          const link = el.querySelector('a');
-          el.childNodes.forEach(node => {
-            if (node.nodeType === Node.TEXT_NODE) node.textContent = ' ' + text + ' ';
-          });
-        } else {
-          el.textContent = text;
-        }
-      }
-    });
-
-    sectionTitles.forEach(({ selector, es, en }) => {
-      const el = document.querySelector(selector);
       if (el) el.textContent = lang === 'en' ? en : es;
     });
 
-    navLinks.forEach(({ selector, es, en }) => {
-      const el = document.querySelector(selector);
+    // About con HTML
+    const aboutEl = document.getElementById('about-text');
+    if (aboutEl) aboutEl.innerHTML = aboutHTML[lang];
+
+    // Nav links
+    Object.entries(navLinks).forEach(([href, { es, en }]) => {
+      const el = document.querySelector(`a[href="${href}"]`);
       if (el) el.textContent = lang === 'en' ? en : es;
     });
 
@@ -158,7 +156,7 @@ import '../styles/global.css';
 </script>
 
 <style>
-  #translate-btn {
+  .translate-btn {
     font-family: 'Space Mono', monospace;
     font-size: 0.7rem;
     font-weight: 700;
@@ -172,7 +170,7 @@ import '../styles/global.css';
     list-style: none;
   }
 
-  #translate-btn:hover {
+  .translate-btn:hover {
     border-color: #e03030;
     color: #e03030;
   }
