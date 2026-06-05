@@ -321,6 +321,6 @@ footer p {
 @media (max-width: 640px) {
   nav { padding: 1.25rem 1.5rem; }
   section { padding: 3rem 1.25rem; }
-  .hero h1 { font-size: 15vw; letter-spacing: 0; }
-  .hero { padding: 4rem 1.5rem 3rem; }
+  .hero { padding: 4rem 1.5rem 3rem; overflow: hidden; }
+  .hero h1 { font-size: 11vw; letter-spacing: -0.03em; }
 }
