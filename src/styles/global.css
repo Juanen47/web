@@ -74,6 +74,8 @@ nav {
   justify-content: center;
   text-align: center;
   padding: 7rem 2rem 6rem;
+  overflow: hidden;
+  width: 100%;
 }
 
 .hero-tag {
@@ -86,11 +88,12 @@ nav {
 }
 
 .hero h1 {
-  font-size: clamp(1rem, 8.5vw, 4.5rem);
+  font-size: clamp(1rem, 7.5vw, 4.5rem);
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.02em;
   margin-bottom: 1.5rem;
+  max-width: 100%;
 }
 
 .hero h1 .accent { color: #e03030; }
@@ -290,6 +293,7 @@ footer {
   justify-content: center;
   gap: 1.5rem;
   margin-bottom: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .footer-links a {
