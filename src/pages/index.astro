@@ -18,7 +18,7 @@ import '../styles/global.css';
     <ul class="nav-links">
       <li><a href="#sobre-mi">Sobre mí</a></li>
       <li><a href="#proyectos">Proyectos</a></li>
-      <li><button id="translate-btn" class="translate-btn">EN</button></li>
+      <li class="nav-translate-desktop"><button id="translate-btn" class="translate-btn">EN</button></li>
     </ul>
   </nav>
 
@@ -27,22 +27,20 @@ import '../styles/global.css';
     <h1>JELOPEZ<span class="accent">.</span>LINK</h1>
     <p class="hero-sub" id="hero-sub">
       Administrador de sistemas e infraestructura IT.
-      Self-hosting todo lo que puedo y documentando el proceso.
+      Hago self-hosting de todo lo que puedo y documento el proceso.
     </p>
     <div class="hero-buttons">
       <a href="https://github.com/Juanen47" target="_blank" class="btn btn-outline">GitHub</a>
       <a href="https://blog.jelopez.link" class="btn btn-outline">Blog</a>
       <a href="https://www.linkedin.com/in/juan-enrique-l%C3%B3pez-monteagudo-2063ab305/" target="_blank" class="btn btn-outline">LinkedIn</a>
+      <button id="translate-btn-mobile" class="translate-btn translate-btn-mobile">EN</button>
     </div>
   </div>
 
   <section id="sobre-mi">
     <h2 class="section-title" id="about-title">Sobre mí</h2>
     <div class="about-text" id="about-text">
-      25 años, sysadmin de Albacete. Técnico Superior en Administración de Sistemas y Ciberseguridad.
-      Trabajo en administración de sistemas e infraestructura IT — servidores, redes, seguridad.
-      Fuera del trabajo mantengo un homelab en Proxmox donde hago self-hosting y lo documento todo.
-      Enfocado en Ciberseguridad, Azure e IA aplicada al trabajo real.
+      Técnico Superior en Administración de Sistemas y Ciberseguridad. Trabajo en infraestructura IT con entornos Windows y Linux, Azure/M365, MikroTik y SonicWall. Fuera del trabajo mantengo un homelab en Proxmox donde experimento y documento todo.
       <a href="https://blog.jelopez.link/about">Más sobre mí →</a>
     </div>
     <div class="cards">
@@ -51,12 +49,12 @@ import '../styles/global.css';
         <p id="card-1-text">Proxmox VE, LXC, WireGuard, Cloudflare Tunnel, NPMplus, AdGuard Home, Authelia.</p>
       </div>
       <div class="card">
-        <h3 id="card-2-title">Sistemas</h3>
-        <p id="card-2-text">Administración Linux, redes, DNS, seguridad, monitorización.</p>
+        <h3 id="card-2-title">Entornos</h3>
+        <p id="card-2-text">Windows Server, Azure AD, M365, MikroTik, SonicWall, Linux.</p>
       </div>
       <div class="card">
-        <h3 id="card-3-title">Enfoque</h3>
-        <p id="card-3-text">Documentar todo. Automatizar lo repetitivo. Simple y reproducible.</p>
+        <h3 id="card-3-title">Scripting</h3>
+        <p id="card-3-text">PowerShell, Bash, automatización y seguridad.</p>
       </div>
     </div>
   </section>
@@ -94,65 +92,65 @@ import '../styles/global.css';
 </html>
 
 <script>
-  const btn = document.getElementById('translate-btn') as HTMLButtonElement;
+  const btnDesktop = document.getElementById('translate-btn') as HTMLButtonElement;
+  const btnMobile = document.getElementById('translate-btn-mobile') as HTMLButtonElement;
   let translated = false;
 
+  function setButtonState(text: string) {
+    if (btnDesktop) btnDesktop.textContent = text;
+    if (btnMobile) btnMobile.textContent = text;
+  }
+
   const texts: Record<string, { es: string; en: string }> = {
-    'hero-tag':     { es: 'SYSADMIN · HOMELAB · CIBERSEGURIDAD', en: 'SYSADMIN · HOMELAB · CYBERSECURITY' },
-    'hero-sub':     { es: 'Administrador de sistemas e infraestructura IT. Self-hosting todo lo que puedo y documentando el proceso.', en: 'Systems administrator and IT infrastructure specialist. Self-hosting everything I can and documenting the journey.' },
-    'about-title':  { es: 'Sobre mí', en: 'About' },
-    'card-1-title': { es: 'Infraestructura', en: 'Infrastructure' },
-    'card-1-text':  { es: 'Proxmox VE, LXC, WireGuard, Cloudflare Tunnel, NPMplus, AdGuard Home, Authelia.', en: 'Proxmox VE, LXC, WireGuard, Cloudflare Tunnel, NPMplus, AdGuard Home, Authelia.' },
-    'card-2-title': { es: 'Sistemas', en: 'Systems' },
-    'card-2-text':  { es: 'Administración Linux, redes, DNS, seguridad, monitorización.', en: 'Linux administration, networking, DNS, security hardening, monitoring.' },
-    'card-3-title': { es: 'Enfoque', en: 'Approach' },
-    'card-3-text':  { es: 'Documentar todo. Automatizar lo repetitivo. Simple y reproducible.', en: 'Document everything. Automate what\'s repetitive. Keep it simple and reproducible.' },
+    'hero-tag':       { es: 'SYSADMIN · HOMELAB · CIBERSEGURIDAD', en: 'SYSADMIN · HOMELAB · CYBERSECURITY' },
+    'hero-sub':       { es: 'Administrador de sistemas e infraestructura IT. Hago self-hosting de todo lo que puedo y documento el proceso.', en: 'Systems administrator and IT infrastructure specialist. Self-hosting everything I can and documenting the journey.' },
+    'about-title':    { es: 'Sobre mí', en: 'About' },
+    'card-1-title':   { es: 'Infraestructura', en: 'Infrastructure' },
+    'card-1-text':    { es: 'Proxmox VE, LXC, WireGuard, Cloudflare Tunnel, NPMplus, AdGuard Home, Authelia.', en: 'Proxmox VE, LXC, WireGuard, Cloudflare Tunnel, NPMplus, AdGuard Home, Authelia.' },
+    'card-2-title':   { es: 'Entornos', en: 'Environments' },
+    'card-2-text':    { es: 'Windows Server, Azure AD, M365, MikroTik, SonicWall, Linux.', en: 'Windows Server, Azure AD, M365, MikroTik, SonicWall, Linux.' },
+    'card-3-title':   { es: 'Scripting', en: 'Scripting' },
+    'card-3-text':    { es: 'PowerShell, Bash, automatización y seguridad.', en: 'PowerShell, Bash, automation and security.' },
     'projects-title': { es: 'Proyectos', en: 'Projects' },
-    'blog-desc':    { es: 'Documentación técnica del homelab. Proxmox, networking, servicios self-hosted y seguridad.', en: 'Technical homelab documentation. Proxmox, networking, self-hosted services and security.' },
-    'coming-title': { es: 'Próximamente', en: 'More coming' },
-    'coming-desc':  { es: 'Más proyectos en camino.', en: 'More projects on the way.' },
+    'blog-desc':      { es: 'Documentación técnica del homelab. Proxmox, networking, servicios self-hosted y seguridad.', en: 'Technical homelab documentation. Proxmox, networking, self-hosted services and security.' },
+    'coming-title':   { es: 'Próximamente', en: 'More coming' },
+    'coming-desc':    { es: 'Más proyectos en camino.', en: 'More projects on the way.' },
   };
 
   const aboutHTML: Record<string, string> = {
-    es: `25 años, sysadmin de Albacete. Técnico Superior en Administración de Sistemas y Ciberseguridad.
-      Trabajo en administración de sistemas e infraestructura IT — servidores, redes, seguridad.
-      Fuera del trabajo mantengo un homelab en Proxmox donde hago self-hosting y lo documento todo.
-      Enfocado en Ciberseguridad, Azure e IA aplicada al trabajo real.
+    es: `Técnico Superior en Administración de Sistemas y Ciberseguridad. Trabajo en infraestructura IT con entornos Windows y Linux, Azure/M365, MikroTik y SonicWall. Fuera del trabajo mantengo un homelab en Proxmox donde experimento y documento todo.
       <a href="https://blog.jelopez.link/about">Más sobre mí →</a>`,
-    en: `25 y/o sysadmin from Albacete, Spain. Higher Technician in Systems Administration and Cybersecurity.
-      Currently working in systems administration and IT infrastructure — servers, networks, security.
-      Outside work I run a homelab on Proxmox where I self-host and document everything.
-      Focused on Cybersecurity, Azure and AI applied to real work.
+    en: `Higher Technician in Systems Administration and Cybersecurity. I work in IT infrastructure with Windows and Linux environments, Azure/M365, MikroTik and SonicWall. Outside work I run a homelab on Proxmox where I experiment and document everything.
       <a href="https://blog.jelopez.link/about">More about me →</a>`,
   };
 
   const navLinks: Record<string, { es: string; en: string }> = {
-    '#sobre-mi': { es: 'Sobre mí', en: 'About' },
+    '#sobre-mi':  { es: 'Sobre mí', en: 'About' },
     '#proyectos': { es: 'Proyectos', en: 'Projects' },
   };
 
-  btn?.addEventListener('click', () => {
+  function handleTranslate() {
     const lang = translated ? 'es' : 'en';
 
-    // Textos simples
     Object.entries(texts).forEach(([id, { es, en }]) => {
       const el = document.getElementById(id);
       if (el) el.textContent = lang === 'en' ? en : es;
     });
 
-    // About con HTML
     const aboutEl = document.getElementById('about-text');
     if (aboutEl) aboutEl.innerHTML = aboutHTML[lang];
 
-    // Nav links
     Object.entries(navLinks).forEach(([href, { es, en }]) => {
       const el = document.querySelector(`a[href="${href}"]`);
       if (el) el.textContent = lang === 'en' ? en : es;
     });
 
-    btn.textContent = translated ? 'EN' : 'ES';
+    setButtonState(translated ? 'EN' : 'ES');
     translated = !translated;
-  });
+  }
+
+  btnDesktop?.addEventListener('click', handleTranslate);
+  btnMobile?.addEventListener('click', handleTranslate);
 </script>
 
 <style>
@@ -167,7 +165,6 @@ import '../styles/global.css';
     padding: 0.25rem 0.6rem;
     cursor: pointer;
     transition: all 0.2s;
-    list-style: none;
   }
 
   .translate-btn:hover {
@@ -175,11 +172,17 @@ import '../styles/global.css';
     color: #e03030;
   }
 
+  .translate-btn-mobile {
+    display: none;
+  }
+
   .nav-links li {
     list-style: none;
   }
 
   @media (max-width: 640px) {
-    .hero h1 { font-size: 2.2rem; letter-spacing: 0; }
+    .hero h1 { font-size: 15vw; letter-spacing: 0; }
+    .nav-translate-desktop { display: none; }
+    .translate-btn-mobile { display: block; }
   }
 </style>
