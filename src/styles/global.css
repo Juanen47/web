@@ -86,15 +86,11 @@ nav {
 }
 
 .hero h1 {
-  font-size: clamp(1.8rem, 6vw, 4.5rem);
+  font-size: clamp(1rem, 8.5vw, 4.5rem);
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.02em;
   margin-bottom: 1.5rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: clip;
-  max-width: 100%;
 }
 
 .hero h1 .accent { color: #e03030; }
@@ -326,5 +322,4 @@ footer p {
   nav { padding: 1.25rem 1.5rem; }
   section { padding: 3rem 1.25rem; }
   .hero { padding: 4rem 1.5rem 3rem; }
-  .hero h1 { font-size: 9.5vw; letter-spacing: -0.03em; white-space: nowrap; }
 }
