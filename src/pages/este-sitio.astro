@@ -1,0 +1,348 @@
+---
+import '../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Este sitio · jelopez.link</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav>
+    <ul class="nav-links">
+      <li><a href="/">← jelopez.link</a></li>
+      <li class="nav-translate-desktop"><button id="translate-btn" class="translate-btn">EN</button></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <p class="hero-tag" id="hero-tag">ASTRO · CLOUDFLARE · GITHUB</p>
+    <h1>ESTE SITIO<span class="accent">.</span></h1>
+    <p class="hero-sub" id="hero-sub">
+      Cómo está construido jelopez.link — stack, despliegue y decisiones de diseño.
+    </p>
+    <button id="translate-btn-mobile" class="translate-btn translate-btn-mobile">EN</button>
+  </div>
+
+  <section id="stack">
+    <h2 class="section-title" id="stack-title">Stack</h2>
+    <div class="cards">
+      <div class="card">
+        <h3 id="card-1-title">Framework</h3>
+        <p id="card-1-text">Astro — generador de sitios estáticos. Partido del template oficial blog, adaptado completamente desde cero en estructura y diseño.</p>
+      </div>
+      <div class="card">
+        <h3 id="card-2-title">Despliegue</h3>
+        <p id="card-2-text">Cloudflare Pages conectado directamente al repositorio de GitHub. Cada push a master despliega automáticamente sin configuración adicional.</p>
+      </div>
+      <div class="card">
+        <h3 id="card-3-title">Dominio y DNS</h3>
+        <p id="card-3-text">jelopez.link registrado y gestionado directamente en Cloudflare. DNS, certificado SSL y CDN incluidos sin infraestructura propia.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="estructura">
+    <h2 class="section-title" id="estructura-title">Estructura</h2>
+    <div class="about-text" id="estructura-text">
+      El repositorio está dividido en dos proyectos independientes: <strong>web</strong> (jelopez.link) y <strong>blog</strong> (blog.jelopez.link), cada uno con su propio proyecto en Cloudflare Pages conectado a su repositorio en GitHub.
+    </div>
+    <div class="tech-block">
+      <div class="tech-row">
+        <span class="tech-label" id="tech-1-label">web</span>
+        <span class="tech-desc" id="tech-1-desc">Página principal. Astro estático, sin base de datos ni servidor. Todo el contenido está hardcodeado en el propio fichero.</span>
+      </div>
+      <div class="tech-row">
+        <span class="tech-label" id="tech-2-label">blog</span>
+        <span class="tech-desc" id="tech-2-desc">Blog técnico con posts en Markdown y MDX. Astro gestiona el routing y la colección de contenido automáticamente.</span>
+      </div>
+      <div class="tech-row">
+        <span class="tech-label" id="tech-3-label">comentarios</span>
+        <span class="tech-desc" id="tech-3-desc">Giscus — sistema de comentarios basado en GitHub Discussions. Sin base de datos, sin tracking, sin coste.</span>
+      </div>
+      <div class="tech-row">
+        <span class="tech-label" id="tech-4-label">traducción</span>
+        <span class="tech-desc" id="tech-4-desc">MyMemory API — traducción automática del contenido al inglés en el cliente, sin build step ni i18n de Astro.</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="diseno">
+    <h2 class="section-title" id="diseno-title">Diseño</h2>
+    <div class="about-text" id="diseno-text">
+      El diseño parte de la referencia visual de un amigo y fue adaptado completamente. Paleta oscura con rojo como color de acento, tipografía monoespaciada para los detalles técnicos y sans-serif pesada para los títulos.
+    </div>
+    <div class="tech-block">
+      <div class="tech-row">
+        <span class="tech-label">Space Mono</span>
+        <span class="tech-desc" id="design-1-desc">Tipografía monoespaciada para navegación, tags, fechas y elementos de interfaz.</span>
+      </div>
+      <div class="tech-row">
+        <span class="tech-label">Syne</span>
+        <span class="tech-desc" id="design-2-desc">Tipografía de display para títulos y headings. Peso 800 para los títulos principales.</span>
+      </div>
+      <div class="tech-row">
+        <span class="tech-label" id="design-3-label">Acento</span>
+        <span class="tech-desc" id="design-3-desc">Rojo <span class="accent-code">#e03030</span> como único color de acento sobre fondo negro puro.</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="flujo">
+    <h2 class="section-title" id="flujo-title">Flujo de trabajo</h2>
+    <div class="about-text" id="flujo-text">
+      El proceso para publicar un post nuevo es completamente local: escribir en Markdown o MDX, hacer commit y push a GitHub. Cloudflare Pages detecta el cambio y despliega en menos de un minuto sin intervención manual.
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <span class="flow-num">01</span>
+        <div>
+          <p class="flow-title" id="step-1-title">Escribir</p>
+          <p class="flow-desc" id="step-1-desc">Post en Markdown o MDX en <code>src/content/blog/</code>. Frontmatter con título, descripción, fecha y tags.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <span class="flow-num">02</span>
+        <div>
+          <p class="flow-title" id="step-2-title">Commit y push</p>
+          <p class="flow-desc" id="step-2-desc">Git push a la rama master del repositorio Juanen47/blog en GitHub.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <span class="flow-num">03</span>
+        <div>
+          <p class="flow-title" id="step-3-title">Build automático</p>
+          <p class="flow-desc" id="step-3-desc">Cloudflare Pages detecta el push, ejecuta <code>npm run build</code> y despliega el sitio estático generado.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <span class="flow-num">04</span>
+        <div>
+          <p class="flow-title" id="step-4-title">Publicado</p>
+          <p class="flow-desc" id="step-4-desc">El post está disponible en blog.jelopez.link en menos de un minuto desde el push.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://github.com/Juanen47" target="_blank">GitHub</a>
+      <a href="mailto:juanenlopez1459@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/juan-enrique-l%C3%B3pez-monteagudo-2063ab305/" target="_blank">LinkedIn</a>
+    </div>
+    <p>© 2026 Juan Enrique López Monteagudo · jelopez.link</p>
+  </footer>
+
+</body>
+</html>
+
+<script>
+  const btnDesktop = document.getElementById('translate-btn') as HTMLButtonElement;
+  const btnMobile = document.getElementById('translate-btn-mobile') as HTMLButtonElement;
+  let translated = false;
+
+  function setButtonState(text: string) {
+    if (btnDesktop) btnDesktop.textContent = text;
+    if (btnMobile) btnMobile.textContent = text;
+  }
+
+  const texts: Record<string, { es: string; en: string }> = {
+    'hero-tag':        { es: 'ASTRO · CLOUDFLARE · GITHUB', en: 'ASTRO · CLOUDFLARE · GITHUB' },
+    'hero-sub':        { es: 'Cómo está construido jelopez.link — stack, despliegue y decisiones de diseño.', en: 'How jelopez.link is built — stack, deployment and design decisions.' },
+    'stack-title':     { es: 'Stack', en: 'Stack' },
+    'card-1-title':    { es: 'Framework', en: 'Framework' },
+    'card-1-text':     { es: 'Astro — generador de sitios estáticos. Partido del template oficial blog, adaptado completamente desde cero en estructura y diseño.', en: 'Astro — static site generator. Started from the official blog template, fully adapted from scratch in structure and design.' },
+    'card-2-title':    { es: 'Despliegue', en: 'Deployment' },
+    'card-2-text':     { es: 'Cloudflare Pages conectado directamente al repositorio de GitHub. Cada push a master despliega automáticamente sin configuración adicional.', en: 'Cloudflare Pages connected directly to the GitHub repository. Every push to master deploys automatically with no additional setup.' },
+    'card-3-title':    { es: 'Dominio y DNS', en: 'Domain & DNS' },
+    'card-3-text':     { es: 'jelopez.link registrado y gestionado directamente en Cloudflare. DNS, certificado SSL y CDN incluidos sin infraestructura propia.', en: 'jelopez.link registered and managed directly in Cloudflare. DNS, SSL certificate and CDN included with no own infrastructure.' },
+    'estructura-title':{ es: 'Estructura', en: 'Structure' },
+    'estructura-text': { es: 'El repositorio está dividido en dos proyectos independientes: <strong>web</strong> (jelopez.link) y <strong>blog</strong> (blog.jelopez.link), cada uno con su propio proyecto en Cloudflare Pages conectado a su repositorio en GitHub.', en: 'The repository is split into two independent projects: <strong>web</strong> (jelopez.link) and <strong>blog</strong> (blog.jelopez.link), each with its own Cloudflare Pages project connected to its GitHub repository.' },
+    'tech-1-label':    { es: 'web', en: 'web' },
+    'tech-1-desc':     { es: 'Página principal. Astro estático, sin base de datos ni servidor. Todo el contenido está hardcodeado en el propio fichero.', en: 'Main page. Static Astro, no database or server. All content is hardcoded in the file itself.' },
+    'tech-2-label':    { es: 'blog', en: 'blog' },
+    'tech-2-desc':     { es: 'Blog técnico con posts en Markdown y MDX. Astro gestiona el routing y la colección de contenido automáticamente.', en: 'Technical blog with posts in Markdown and MDX. Astro handles routing and content collection automatically.' },
+    'tech-3-label':    { es: 'comentarios', en: 'comments' },
+    'tech-3-desc':     { es: 'Giscus — sistema de comentarios basado en GitHub Discussions. Sin base de datos, sin tracking, sin coste.', en: 'Giscus — comment system based on GitHub Discussions. No database, no tracking, no cost.' },
+    'tech-4-label':    { es: 'traducción', en: 'translation' },
+    'tech-4-desc':     { es: 'MyMemory API — traducción automática del contenido al inglés en el cliente, sin build step ni i18n de Astro.', en: 'MyMemory API — automatic content translation to English on the client, no build step or Astro i18n.' },
+    'diseno-title':    { es: 'Diseño', en: 'Design' },
+    'diseno-text':     { es: 'El diseño parte de la referencia visual de un amigo y fue adaptado completamente. Paleta oscura con rojo como color de acento, tipografía monoespaciada para los detalles técnicos y sans-serif pesada para los títulos.', en: 'The design is based on a friend\'s visual reference and was fully adapted. Dark palette with red as accent color, monospaced typography for technical details and heavy sans-serif for headings.' },
+    'design-1-desc':   { es: 'Tipografía monoespaciada para navegación, tags, fechas y elementos de interfaz.', en: 'Monospaced typography for navigation, tags, dates and interface elements.' },
+    'design-2-desc':   { es: 'Tipografía de display para títulos y headings. Peso 800 para los títulos principales.', en: 'Display typography for titles and headings. Weight 800 for main titles.' },
+    'design-3-label':  { es: 'Acento', en: 'Accent' },
+    'design-3-desc':   { es: 'Rojo #e03030 como único color de acento sobre fondo negro puro.', en: 'Red #e03030 as the only accent color on pure black background.' },
+    'flujo-title':     { es: 'Flujo de trabajo', en: 'Workflow' },
+    'flujo-text':      { es: 'El proceso para publicar un post nuevo es completamente local: escribir en Markdown o MDX, hacer commit y push a GitHub. Cloudflare Pages detecta el cambio y despliega en menos de un minuto sin intervención manual.', en: 'The process to publish a new post is completely local: write in Markdown or MDX, commit and push to GitHub. Cloudflare Pages detects the change and deploys in under a minute with no manual intervention.' },
+    'step-1-title':    { es: 'Escribir', en: 'Write' },
+    'step-1-desc':     { es: 'Post en Markdown o MDX en src/content/blog/. Frontmatter con título, descripción, fecha y tags.', en: 'Post in Markdown or MDX in src/content/blog/. Frontmatter with title, description, date and tags.' },
+    'step-2-title':    { es: 'Commit y push', en: 'Commit & push' },
+    'step-2-desc':     { es: 'Git push a la rama master del repositorio Juanen47/blog en GitHub.', en: 'Git push to the master branch of the Juanen47/blog repository on GitHub.' },
+    'step-3-title':    { es: 'Build automático', en: 'Automatic build' },
+    'step-3-desc':     { es: 'Cloudflare Pages detecta el push, ejecuta npm run build y despliega el sitio estático generado.', en: 'Cloudflare Pages detects the push, runs npm run build and deploys the generated static site.' },
+    'step-4-title':    { es: 'Publicado', en: 'Published' },
+    'step-4-desc':     { es: 'El post está disponible en blog.jelopez.link en menos de un minuto desde el push.', en: 'The post is available at blog.jelopez.link in under a minute from the push.' },
+  };
+
+  function handleTranslate() {
+    const lang = translated ? 'es' : 'en';
+
+    Object.entries(texts).forEach(([id, { es, en }]) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (id === 'estructura-text') {
+        el.innerHTML = lang === 'en' ? en : es;
+      } else {
+        el.textContent = lang === 'en' ? en : es;
+      }
+    });
+
+    setButtonState(translated ? 'EN' : 'ES');
+    translated = !translated;
+  }
+
+  btnDesktop?.addEventListener('click', handleTranslate);
+  btnMobile?.addEventListener('click', handleTranslate);
+</script>
+
+<style>
+  .translate-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: rgba(232,232,232,0.5);
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 0.25rem 0.6rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .translate-btn:hover {
+    border-color: #e03030;
+    color: #e03030;
+  }
+
+  .translate-btn-mobile {
+    display: none;
+    margin-top: 1rem;
+  }
+
+  .nav-links li {
+    list-style: none;
+  }
+
+  .tech-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 1.5rem;
+  }
+
+  .tech-row {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    align-items: baseline;
+  }
+
+  .tech-row:last-child {
+    border-bottom: none;
+  }
+
+  .tech-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #e03030;
+    min-width: 110px;
+    flex-shrink: 0;
+  }
+
+  .tech-desc {
+    font-size: 0.85rem;
+    color: rgba(232,232,232,0.6);
+    line-height: 1.6;
+  }
+
+  .accent-code {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    color: #e03030;
+  }
+
+  .flow-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .flow-step {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    align-items: flex-start;
+  }
+
+  .flow-step:last-child {
+    border-bottom: none;
+  }
+
+  .flow-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #e03030;
+    min-width: 24px;
+    margin-top: 0.15rem;
+  }
+
+  .flow-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    color: rgba(232,232,232,0.9);
+  }
+
+  .flow-desc {
+    font-size: 0.85rem;
+    color: rgba(232,232,232,0.5);
+    line-height: 1.6;
+  }
+
+  .flow-desc code {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(232,232,232,0.7);
+    background: rgba(255,255,255,0.05);
+    padding: 0.1rem 0.3rem;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: clamp(1rem, 5.5vw, 4.5rem) !important; letter-spacing: -0.03em; }
+    .nav-translate-desktop { display: none; }
+    .translate-btn-mobile { display: block; }
+    .tech-row { flex-direction: column; gap: 0.5rem; }
+    .tech-label { min-width: unset; }
+  }
+</style>
