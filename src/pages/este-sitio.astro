@@ -8,11 +8,17 @@ import '../styles/global.css';
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Este sitio · jelopez.link</title>
+  <meta name="description" content="Cómo está construido jelopez.link: stack, despliegue y decisiones de diseño." />
+  <meta name="theme-color" content="#07070b" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
 </head>
 <body>
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+  <div class="orbs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 
   <nav>
     <ul class="nav-links">
@@ -21,6 +27,7 @@ import '../styles/global.css';
     </ul>
   </nav>
 
+  <main id="main">
   <div class="hero">
     <p class="hero-tag" id="hero-tag">ASTRO · CLOUDFLARE · GITHUB</p>
     <h1>ESTE SITIO<span class="accent">.</span></h1>
@@ -76,12 +83,12 @@ import '../styles/global.css';
   <section id="diseno">
     <h2 class="section-title" id="diseno-title">Diseño</h2>
     <div class="about-text" id="diseno-text">
-      El diseño parte de la referencia visual de un amigo y fue adaptado completamente. Paleta oscura con rojo como color de acento, tipografía monoespaciada para los detalles técnicos y sans-serif pesada para los títulos.
+      Estilo «liquid glass» inspirado en el de Apple: orbes de color difuminados al fondo y paneles de cristal translúcido con desenfoque, bordes con brillo y un reflejo que sigue al cursor. Paleta oscura con coral como color de acento.
     </div>
     <div class="tech-block">
       <div class="tech-row">
-        <span class="tech-label">Space Mono</span>
-        <span class="tech-desc" id="design-1-desc">Tipografía monoespaciada para navegación, tags, fechas y elementos de interfaz.</span>
+        <span class="tech-label">Inter + Mono</span>
+        <span class="tech-desc" id="design-1-desc">Inter para el texto y la interfaz; JetBrains Mono para etiquetas y detalles técnicos.</span>
       </div>
       <div class="tech-row">
         <span class="tech-label">Syne</span>
@@ -89,7 +96,7 @@ import '../styles/global.css';
       </div>
       <div class="tech-row">
         <span class="tech-label" id="design-3-label">Acento</span>
-        <span class="tech-desc" id="design-3-desc">Rojo <span class="accent-code">#e03030</span> como único color de acento sobre fondo negro puro.</span>
+        <span class="tech-desc" id="design-3-desc">Coral <span class="accent-code">#ff5a5f</span> como color de acento sobre fondo casi negro, con orbes violeta y azul que dan profundidad al cristal.</span>
       </div>
     </div>
   </section>
@@ -131,6 +138,8 @@ import '../styles/global.css';
     </div>
   </section>
 
+  </main>
+
   <footer>
     <div class="footer-links">
       <a href="https://github.com/Juanen47" target="_blank">GitHub</a>
@@ -144,6 +153,7 @@ import '../styles/global.css';
 </html>
 
 <script>
+  import '../scripts/glass.ts';
   const btnDesktop = document.getElementById('translate-btn') as HTMLButtonElement;
   const btnMobile = document.getElementById('translate-btn-mobile') as HTMLButtonElement;
   let translated = false;
@@ -174,11 +184,11 @@ import '../styles/global.css';
     'tech-4-label':    { es: 'traducción', en: 'translation' },
     'tech-4-desc':     { es: 'MyMemory API — traducción automática del contenido al inglés en el cliente, sin build step ni i18n de Astro.', en: 'MyMemory API — automatic content translation to English on the client, no build step or Astro i18n.' },
     'diseno-title':    { es: 'Diseño', en: 'Design' },
-    'diseno-text':     { es: 'El diseño parte de la referencia visual de un amigo y fue adaptado completamente. Paleta oscura con rojo como color de acento, tipografía monoespaciada para los detalles técnicos y sans-serif pesada para los títulos.', en: 'The design is based on a friend\'s visual reference and was fully adapted. Dark palette with red as accent color, monospaced typography for technical details and heavy sans-serif for headings.' },
-    'design-1-desc':   { es: 'Tipografía monoespaciada para navegación, tags, fechas y elementos de interfaz.', en: 'Monospaced typography for navigation, tags, dates and interface elements.' },
+    'diseno-text':     { es: 'Estilo «liquid glass» inspirado en el de Apple: orbes de color difuminados al fondo y paneles de cristal translúcido con desenfoque, bordes con brillo y un reflejo que sigue al cursor. Paleta oscura con coral como color de acento.', en: 'A "liquid glass" style inspired by Apple\'s: blurred colour orbs in the background and translucent glass panels with blur, glowing edges and a highlight that follows the cursor. Dark palette with coral as the accent colour.' },
+    'design-1-desc':   { es: 'Inter para el texto y la interfaz; JetBrains Mono para etiquetas y detalles técnicos.', en: 'Inter for text and interface; JetBrains Mono for labels and technical details.' },
     'design-2-desc':   { es: 'Tipografía de display para títulos y headings. Peso 800 para los títulos principales.', en: 'Display typography for titles and headings. Weight 800 for main titles.' },
     'design-3-label':  { es: 'Acento', en: 'Accent' },
-    'design-3-desc':   { es: 'Rojo #e03030 como único color de acento sobre fondo negro puro.', en: 'Red #e03030 as the only accent color on pure black background.' },
+    'design-3-desc':   { es: 'Coral #ff5a5f como color de acento sobre fondo casi negro, con orbes violeta y azul que dan profundidad al cristal.', en: 'Coral #ff5a5f as the accent colour on a near-black background, with violet and blue orbs adding depth to the glass.' },
     'flujo-title':     { es: 'Flujo de trabajo', en: 'Workflow' },
     'flujo-text':      { es: 'El proceso para publicar un post nuevo es completamente local: escribir en Markdown o MDX, hacer commit y push a GitHub. Cloudflare Pages detecta el cambio y despliega en menos de un minuto sin intervención manual.', en: 'The process to publish a new post is completely local: write in Markdown or MDX, commit and push to GitHub. Cloudflare Pages detects the change and deploys in under a minute with no manual intervention.' },
     'step-1-title':    { es: 'Escribir', en: 'Write' },
@@ -213,136 +223,100 @@ import '../styles/global.css';
 </script>
 
 <style>
-  .translate-btn {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: rgba(232,232,232,0.5);
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.12);
-    padding: 0.25rem 0.6rem;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .translate-btn:hover {
-    border-color: #e03030;
-    color: #e03030;
-  }
-
   .translate-btn-mobile {
     display: none;
-    margin-top: 1rem;
+    margin-top: 1.25rem;
   }
 
-  .nav-links li {
-    list-style: none;
-  }
+  .nav-links li { list-style: none; }
 
-  .tech-block {
+  .tech-block,
+  .flow-steps {
     display: flex;
     flex-direction: column;
-    gap: 0;
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 4px;
-    overflow: hidden;
     margin-top: 1.5rem;
   }
 
   .tech-row {
     display: flex;
     gap: 2rem;
-    padding: 1rem 1.25rem;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 1.1rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     align-items: baseline;
   }
 
-  .tech-row:last-child {
-    border-bottom: none;
-  }
+  .tech-row:last-child { border-bottom: none; }
 
   .tech-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
-    color: #e03030;
-    min-width: 110px;
+    color: var(--accent);
+    min-width: 120px;
     flex-shrink: 0;
   }
 
   .tech-desc {
-    font-size: 0.85rem;
-    color: rgba(232,232,232,0.6);
-    line-height: 1.6;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.65;
   }
 
   .accent-code {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.8rem;
-    color: #e03030;
-  }
-
-  .flow-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    margin-top: 1.5rem;
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 4px;
-    overflow: hidden;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent);
   }
 
   .flow-step {
     display: flex;
     gap: 1.5rem;
-    padding: 1.25rem;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 1.3rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     align-items: flex-start;
   }
 
-  .flow-step:last-child {
-    border-bottom: none;
-  }
+  .flow-step:last-child { border-bottom: none; }
 
   .flow-num {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
     font-weight: 700;
-    color: #e03030;
-    min-width: 24px;
-    margin-top: 0.15rem;
+    color: var(--accent);
+    min-width: 26px;
+    margin-top: 0.2rem;
   }
 
   .flow-title {
-    font-family: 'Syne', sans-serif;
+    font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-bottom: 0.25rem;
-    color: rgba(232,232,232,0.9);
+    color: var(--text);
   }
 
   .flow-desc {
-    font-size: 0.85rem;
-    color: rgba(232,232,232,0.5);
-    line-height: 1.6;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin: 0;
   }
 
   .flow-desc code {
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    color: rgba(232,232,232,0.7);
-    background: rgba(255,255,255,0.05);
-    padding: 0.1rem 0.3rem;
-    border-radius: 2px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0.1rem 0.4rem;
+    border-radius: 6px;
   }
 
   @media (max-width: 640px) {
-    .hero h1 { font-size: clamp(1rem, 5.5vw, 4.5rem) !important; letter-spacing: -0.03em; }
     .nav-translate-desktop { display: none; }
     .translate-btn-mobile { display: block; }
-    .tech-row { flex-direction: column; gap: 0.5rem; }
+    .tech-row { flex-direction: column; gap: 0.4rem; }
     .tech-label { min-width: unset; }
+    .flow-step { gap: 1rem; }
   }
 </style>
