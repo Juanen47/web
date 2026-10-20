@@ -1,0 +1,144 @@
+---
+import Base from '../layouts/Base.astro';
+import { type Lang } from '../i18n/content';
+
+interface Props { lang: Lang }
+
+const { lang } = Astro.props;
+
+const content = {
+  es: {
+    title: 'Este sitio · jelopez.link',
+    description: 'Cómo está construido jelopez.link: stack, despliegue, rendimiento, privacidad y decisiones de diseño.',
+    sub: 'Cómo está construido jelopez.link: stack, despliegue y decisiones de diseño.',
+    nav: { stack: 'Stack', structure: 'Estructura', design: 'Diseño' },
+    stackTitle: 'Stack',
+    cards: [
+      { title: 'Framework', text: 'Astro: generador de sitios estáticos. Cada página se genera en el build como HTML plano, sin framework de cliente.' },
+      { title: 'Despliegue', text: 'Cloudflare Pages conectado al repositorio de GitHub. Cada push a master despliega automáticamente.' },
+      { title: 'Dominio y DNS', text: 'jelopez.link registrado y gestionado en Cloudflare. DNS, certificado TLS y CDN sin infraestructura propia.' },
+    ],
+    structureTitle: 'Estructura',
+    structureText: 'Son dos proyectos independientes: <strong>web</strong> (jelopez.link) y <strong>blog</strong> (blog.jelopez.link), cada uno con su repositorio en GitHub y su proyecto en Cloudflare Pages.',
+    rows: [
+      { label: 'web', text: 'Página principal. Astro estático, sin base de datos ni servidor. Los textos viven en un único fichero de contenido.' },
+      { label: 'blog', text: 'Blog técnico con posts en Markdown y MDX, RSS y sitemap. Astro gestiona el routing y la colección de contenido.' },
+      { label: 'comentarios', text: 'Giscus, basado en GitHub Discussions. Sin base de datos propia ni coste.' },
+      { label: 'idiomas', text: 'Cada página existe en español y en inglés con su propia URL (/ y /en/), generadas en el build y enlazadas con hreflang para los buscadores.' },
+      { label: 'privacidad', text: 'Sin cookies, sin analítica y sin recursos de terceros: hasta las fuentes se sirven desde el propio dominio.' },
+      { label: 'seguridad', text: 'Cabeceras HTTP estrictas (CSP, HSTS, Permissions-Policy) definidas en el fichero _headers de Cloudflare Pages.' },
+    ],
+    designTitle: 'Diseño',
+    designText: 'Estilo «liquid glass» inspirado en el de Apple: orbes de color difuminados al fondo y paneles de cristal translúcido con desenfoque, bordes con brillo y un reflejo que sigue al cursor. Paleta oscura con coral como color de acento.',
+    design: [
+      { label: 'Inter + Mono', text: 'Inter para el texto y la interfaz; JetBrains Mono para etiquetas y detalles técnicos.' },
+      { label: 'Syne', text: 'Tipografía de display para títulos. Peso 800 para los títulos principales.' },
+      { label: 'Acento', text: 'Coral <span class="accent-code">#ff5a5f</span> sobre fondo casi negro, con orbes violeta y azul que dan profundidad al cristal.' },
+    ],
+    flowTitle: 'Flujo de trabajo',
+    flowText: 'Publicar un post es un proceso local: escribir en Markdown o MDX, hacer commit y push. Cloudflare Pages detecta el cambio y despliega en menos de un minuto.',
+    steps: [
+      { title: 'Escribir', text: 'Post en Markdown o MDX en <code>src/content/blog/</code>, con título, descripción, fecha y tags en el frontmatter.' },
+      { title: 'Commit y push', text: 'Push a la rama master del repositorio Juanen47/blog en GitHub.' },
+      { title: 'Build automático', text: 'Cloudflare Pages ejecuta <code>npm run build</code> y despliega el sitio estático generado.' },
+      { title: 'Publicado', text: 'El post está en blog.jelopez.link menos de un minuto después del push.' },
+    ],
+  },
+  en: {
+    title: 'This site · jelopez.link',
+    description: 'How jelopez.link is built: stack, deployment, performance, privacy and design decisions.',
+    sub: 'How jelopez.link is built: stack, deployment and design decisions.',
+    nav: { stack: 'Stack', structure: 'Structure', design: 'Design' },
+    stackTitle: 'Stack',
+    cards: [
+      { title: 'Framework', text: 'Astro: a static site generator. Every page is built as plain HTML, with no client-side framework.' },
+      { title: 'Deployment', text: 'Cloudflare Pages connected to the GitHub repository. Every push to master deploys automatically.' },
+      { title: 'Domain & DNS', text: 'jelopez.link registered and managed in Cloudflare. DNS, TLS certificate and CDN with no own infrastructure.' },
+    ],
+    structureTitle: 'Structure',
+    structureText: 'There are two independent projects: <strong>web</strong> (jelopez.link) and <strong>blog</strong> (blog.jelopez.link), each with its own GitHub repository and Cloudflare Pages project.',
+    rows: [
+      { label: 'web', text: 'Main site. Static Astro, no database or server. All copy lives in a single content file.' },
+      { label: 'blog', text: 'Technical blog with posts in Markdown and MDX, RSS and sitemap. Astro handles routing and the content collection.' },
+      { label: 'comments', text: 'Giscus, built on GitHub Discussions. No own database and no cost.' },
+      { label: 'languages', text: 'Every page exists in Spanish and English with its own URL (/ and /en/), generated at build time and linked with hreflang for search engines.' },
+      { label: 'privacy', text: 'No cookies, no analytics and no third-party resources: even the fonts are served from this domain.' },
+      { label: 'security', text: 'Strict HTTP headers (CSP, HSTS, Permissions-Policy) defined in the Cloudflare Pages _headers file.' },
+    ],
+    designTitle: 'Design',
+    designText: 'A "liquid glass" style inspired by Apple\'s: blurred colour orbs in the background and translucent glass panels with blur, glowing edges and a highlight that follows the cursor. Dark palette with coral as the accent colour.',
+    design: [
+      { label: 'Inter + Mono', text: 'Inter for text and interface; JetBrains Mono for labels and technical details.' },
+      { label: 'Syne', text: 'Display typeface for headings. Weight 800 for the main titles.' },
+      { label: 'Accent', text: 'Coral <span class="accent-code">#ff5a5f</span> on a near-black background, with violet and blue orbs adding depth to the glass.' },
+    ],
+    flowTitle: 'Workflow',
+    flowText: 'Publishing a post is a local process: write in Markdown or MDX, commit and push. Cloudflare Pages picks up the change and deploys in under a minute.',
+    steps: [
+      { title: 'Write', text: 'Post in Markdown or MDX in <code>src/content/blog/</code>, with title, description, date and tags in the frontmatter.' },
+      { title: 'Commit & push', text: 'Push to the master branch of the Juanen47/blog repository on GitHub.' },
+      { title: 'Automatic build', text: 'Cloudflare Pages runs <code>npm run build</code> and deploys the generated static site.' },
+      { title: 'Published', text: 'The post is live on blog.jelopez.link less than a minute after the push.' },
+    ],
+  },
+}[lang];
+---
+
+<Base lang={lang} route="site" title={content.title} description={content.description}>
+  <Fragment slot="nav">
+    <li><a href="#stack">{content.nav.stack}</a></li>
+    <li><a href="#estructura">{content.nav.structure}</a></li>
+    <li><a href="#diseno">{content.nav.design}</a></li>
+  </Fragment>
+
+  <header class="hero">
+    <p class="hero-tag">ASTRO · CLOUDFLARE · GITHUB</p>
+    <h1>{lang === 'es' ? 'Este sitio' : 'This site'}<span class="accent">.</span></h1>
+    <p class="hero-sub">{content.sub}</p>
+  </header>
+
+  <section id="stack">
+    <h2 class="section-title">{content.stackTitle}</h2>
+    <div class="cards">
+      {content.cards.map((c) => (
+        <div class="card"><h3>{c.title}</h3><p>{c.text}</p></div>
+      ))}
+    </div>
+  </section>
+
+  <section id="estructura">
+    <h2 class="section-title">{content.structureTitle}</h2>
+    <div class="about-text"><p set:html={content.structureText} /></div>
+    <div class="tech-block">
+      {content.rows.map((r) => (
+        <div class="tech-row"><span class="tech-label">{r.label}</span><span class="tech-desc">{r.text}</span></div>
+      ))}
+    </div>
+  </section>
+
+  <section id="diseno">
+    <h2 class="section-title">{content.designTitle}</h2>
+    <div class="about-text"><p>{content.designText}</p></div>
+    <div class="tech-block">
+      {content.design.map((r) => (
+        <div class="tech-row"><span class="tech-label">{r.label}</span><span class="tech-desc" set:html={r.text} /></div>
+      ))}
+    </div>
+  </section>
+
+  <section id="flujo">
+    <h2 class="section-title">{content.flowTitle}</h2>
+    <div class="about-text"><p>{content.flowText}</p></div>
+    <ol class="flow-steps">
+      {content.steps.map((s, i) => (
+        <li class="flow-step">
+          <span class="flow-num">{String(i + 1).padStart(2, '0')}</span>
+          <div>
+            <p class="flow-title">{s.title}</p>
+            <p class="flow-desc" set:html={s.text} />
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+</Base>
