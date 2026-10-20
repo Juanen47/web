@@ -1,0 +1,147 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE, home, ui, type Lang } from '../i18n/content';
+
+interface Props { lang: Lang }
+
+const { lang } = Astro.props;
+const c = home[lang];
+const nav = ui[lang].nav;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  inLanguage: lang,
+  mainEntity: {
+    '@type': 'Person',
+    name: SITE.name,
+    url: SITE.url,
+    image: `${SITE.url}/og.png`,
+    jobTitle: lang === 'es' ? 'Administrador de Sistemas y Redes' : 'Systems and Network Administrator',
+    address: { '@type': 'PostalAddress', addressLocality: 'Albacete', addressCountry: 'ES' },
+    alumniOf: { '@type': 'EducationalOrganization', name: 'IES Leonardo Da Vinci' },
+    knowsAbout: ['Ciberseguridad', 'SonicWall', 'Fortinet', 'MikroTik', 'Aruba', 'VMware vSphere', 'Proxmox VE', 'Microsoft Azure', 'Veeam', 'Active Directory', 'WireGuard', 'PowerShell', 'Bash'],
+    knowsLanguage: ['es', 'en'],
+    sameAs: [SITE.github, SITE.linkedin, SITE.blog],
+  },
+};
+---
+
+<Base lang={lang} route="home" title={c.title} description={c.description} jsonLd={jsonLd}>
+  <Fragment slot="nav">
+    <li><a href="#sobre-mi">{nav.about}</a></li>
+    <li><a href="#experiencia">{nav.experience}</a></li>
+    <li class="hide-sm"><a href="#proyectos">{nav.projects}</a></li>
+    <li><a href="#contacto">{nav.contact}</a></li>
+  </Fragment>
+
+  <header class="hero">
+    <p class="hero-tag">{c.tag}</p>
+    <h1>Juan Enrique López<span class="accent">.</span></h1>
+    <p class="hero-sub">{c.role}</p>
+    <div class="hero-buttons">
+      <a href="#contacto" class="btn btn-primary">{c.cta.contact}</a>
+      <a href={SITE.blog} class="btn btn-outline">{c.cta.blog}</a>
+      <a href={SITE.linkedin} class="btn btn-outline" rel="me noopener">LinkedIn</a>
+      <a href={SITE.github} class="btn btn-outline" rel="me noopener">GitHub</a>
+    </div>
+  </header>
+
+  <section id="sobre-mi" aria-labelledby="about-title">
+    <h2 class="section-title" id="about-title">{c.about.title}</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        {c.about.paragraphs.map((p) => <p set:html={p} />)}
+      </div>
+      <dl class="facts">
+        {c.about.facts.map((f) => (
+          <div class="fact">
+            <dt>{f.label}</dt>
+            <dd>{f.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section id="experiencia" aria-labelledby="exp-title">
+    <h2 class="section-title" id="exp-title">{c.experience.title}</h2>
+    <ol class="timeline">
+      {c.experience.items.map((job) => (
+        <li class="job">
+          <div class="job-head">
+            <div>
+              <h3>{job.role}</h3>
+              <p class="job-company">{job.company}</p>
+            </div>
+            <span class="tag">{job.period}</span>
+          </div>
+          <ul class="job-points">
+            {job.points.map((p) => <li>{p}</li>)}
+          </ul>
+        </li>
+      ))}
+    </ol>
+
+    <h3 class="subsection-title">{c.education.title}</h3>
+    <ul class="edu-list">
+      {c.education.items.map((e) => (
+        <li class="edu">
+          <div>
+            <p class="edu-name">{e.name}</p>
+            <p class="edu-school">{e.school}</p>
+          </div>
+          <span class="tag">{e.period}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section id="competencias" aria-labelledby="skills-title">
+    <h2 class="section-title" id="skills-title">{c.skills.title}</h2>
+    <div class="cards">
+      {c.skills.items.map((s) => (
+        <div class="card">
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section id="homelab" aria-labelledby="lab-title">
+    <h2 class="section-title" id="lab-title">{c.homelab.title}</h2>
+    <div class="about-text">
+      <p>{c.homelab.text}</p>
+      <ul class="chips">
+        {c.homelab.stack.map((s) => <li>{s}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section id="proyectos" aria-labelledby="projects-title">
+    <h2 class="section-title" id="projects-title">{c.projects.title}</h2>
+    <div class="projects-grid">
+      {c.projects.items.map((p) => (
+        <a href={p.href} class="project-card">
+          <div class="project-header">
+            <h3>{p.title}</h3>
+            <span class="tag">{p.tag}</span>
+          </div>
+          <p>{p.text}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section id="contacto" aria-labelledby="contact-title">
+    <div class="contact-panel">
+      <h2 class="section-title" id="contact-title">{c.contact.title}</h2>
+      <p>{c.contact.text}</p>
+      <div class="hero-buttons">
+        <a href={`mailto:${SITE.email}`} class="btn btn-primary">{SITE.email}</a>
+        <a href={SITE.linkedin} class="btn btn-outline" rel="me noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</Base>

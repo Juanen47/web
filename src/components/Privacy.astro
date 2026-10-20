@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE, type Lang } from '../i18n/content';
+
+interface Props { lang: Lang }
+
+const { lang } = Astro.props;
+const updated = lang === 'es' ? '20 de octubre de 2026' : '20 October 2026';
+
+const content = {
+  es: {
+    title: 'Aviso legal, privacidad y cookies · jelopez.link',
+    description: 'Quién es responsable de jelopez.link, qué datos se tratan y por qué esta web no usa cookies.',
+    heading: 'Privacidad',
+    sub: 'Esta web no usa cookies, no tiene analítica y no carga nada de terceros.',
+    sections: [
+      {
+        title: 'Responsable',
+        body: `<p>Esta es la web personal de <strong>${SITE.name}</strong>, con residencia en Albacete (España). Es un sitio sin actividad comercial. Contacto: <a href="mailto:${SITE.email}">${SITE.email}</a>.</p>`,
+      },
+      {
+        title: 'Cookies',
+        body: '<p>jelopez.link no instala cookies ni usa almacenamiento local en tu navegador, ni propias ni de terceros. Tampoco hay herramientas de analítica, publicidad, píxeles de seguimiento ni vídeos o mapas incrustados. Por eso no verás ningún aviso de cookies.</p>',
+      },
+      {
+        title: 'Datos que se tratan',
+        body: '<p>La web está alojada en <strong>Cloudflare Pages</strong> (Cloudflare, Inc.). Como cualquier servidor, Cloudflare procesa tu dirección IP y datos técnicos de la petición (navegador, página solicitada) para servir la web y protegerla frente a ataques. Ese tratamiento se basa en el interés legítimo en mantener el sitio disponible y seguro (art. 6.1.f RGPD). Cloudflare puede tratar datos fuera del Espacio Económico Europeo y está adherida al Marco de Privacidad de Datos UE-EE. UU.</p><p>Si me escribes por correo, usaré tu dirección y tu mensaje solo para responderte, y no los cederé a nadie.</p>',
+      },
+      {
+        title: 'Enlaces externos',
+        body: '<p>Los enlaces a GitHub, LinkedIn o al blog llevan a sitios con sus propias políticas de privacidad. Los comentarios del blog usan Giscus (GitHub Discussions), que solo se activa en las páginas de los artículos.</p>',
+      },
+      {
+        title: 'Tus derechos',
+        body: `<p>Puedes pedir acceso, rectificación o supresión de tus datos escribiendo a <a href="mailto:${SITE.email}">${SITE.email}</a>. Si crees que no se han respetado tus derechos, puedes reclamar ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es">aepd.es</a>).</p>`,
+      },
+    ],
+    updated: `Última actualización: ${updated}.`,
+  },
+  en: {
+    title: 'Legal notice, privacy & cookies · jelopez.link',
+    description: 'Who runs jelopez.link, what data is processed and why this site uses no cookies.',
+    heading: 'Privacy',
+    sub: 'This site uses no cookies, has no analytics and loads nothing from third parties.',
+    sections: [
+      {
+        title: 'Who runs this site',
+        body: `<p>This is the personal website of <strong>${SITE.name}</strong>, based in Albacete, Spain. It has no commercial activity. Contact: <a href="mailto:${SITE.email}">${SITE.email}</a>.</p>`,
+      },
+      {
+        title: 'Cookies',
+        body: '<p>jelopez.link sets no cookies and uses no local storage in your browser, neither its own nor third-party. There is no analytics, advertising, tracking pixel or embedded video or map. That is why you will not see a cookie banner.</p>',
+      },
+      {
+        title: 'Data processed',
+        body: '<p>The site is hosted on <strong>Cloudflare Pages</strong> (Cloudflare, Inc.). Like any server, Cloudflare processes your IP address and technical request data (browser, requested page) to serve the site and protect it from attacks. This is based on the legitimate interest in keeping the site available and secure (Art. 6(1)(f) GDPR). Cloudflare may process data outside the European Economic Area and participates in the EU-US Data Privacy Framework.</p><p>If you email me, I will use your address and message only to reply, and will not share them with anyone.</p>',
+      },
+      {
+        title: 'External links',
+        body: '<p>Links to GitHub, LinkedIn or the blog lead to sites with their own privacy policies. Blog comments use Giscus (GitHub Discussions), which only loads on article pages.</p>',
+      },
+      {
+        title: 'Your rights',
+        body: `<p>You can request access to, correction or erasure of your data by writing to <a href="mailto:${SITE.email}">${SITE.email}</a>. If you believe your rights have not been respected, you can lodge a complaint with the Spanish Data Protection Agency (<a href="https://www.aepd.es">aepd.es</a>).</p>`,
+      },
+    ],
+    updated: `Last updated: ${updated}.`,
+  },
+}[lang];
+---
+
+<Base lang={lang} route="privacy" title={content.title} description={content.description}>
+  <header class="hero hero-compact">
+    <p class="hero-tag">{lang === 'es' ? 'AVISO LEGAL · PRIVACIDAD · COOKIES' : 'LEGAL · PRIVACY · COOKIES'}</p>
+    <h1>{content.heading}<span class="accent">.</span></h1>
+    <p class="hero-sub">{content.sub}</p>
+  </header>
+
+  <section>
+    <div class="about-text prose">
+      {content.sections.map((s) => (
+        <>
+          <h2>{s.title}</h2>
+          <Fragment set:html={s.body} />
+        </>
+      ))}
+      <p class="muted">{content.updated}</p>
+    </div>
+  </section>
+</Base>
