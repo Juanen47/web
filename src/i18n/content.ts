@@ -51,7 +51,7 @@ export const home = {
     about: {
       title: 'Sobre mí',
       paragraphs: [
-        'Soy administrador de sistemas y redes en Albacete, con el Grado Superior de ASIR y el curso de especialización en Ciberseguridad. En mi último puesto, en <strong>Proceso de la Información CLM</strong>, me he encargado de la red y la seguridad perimetral (SonicWall, Fortinet, MikroTik y switches Aruba gestionados desde HPE Aruba Central), la virtualización con vSphere y Proxmox, Azure, las copias con Veeam y Acronis, Active Directory híbrido y el soporte diario a usuarios.',
+        'Soy administrador de sistemas y redes en Albacete, especializado en ciberseguridad, con el Grado Superior de ASIR y el curso de especialización en Ciberseguridad. Mi día a día ha sido la red y la seguridad perimetral, la virtualización, las copias de seguridad y el soporte a usuarios, tanto en infraestructura propia como en Azure.',
         'Me gusta que las cosas funcionen y que se pueda demostrar que funcionan: copias que se validan, alertas antes que incidencias y documentación que otro pueda seguir. Por eso fuera del trabajo mantengo un homelab sobre Proxmox, sin puertos abiertos, con MFA y monitorización propia, y cuento cada paso en el <a href="https://blog.jelopez.link">blog</a>.',
       ],
       facts: [
@@ -138,7 +138,7 @@ export const home = {
     about: {
       title: 'About',
       paragraphs: [
-        'I am a systems and network administrator based in Albacete, Spain, with a Higher National Diploma in Networked Systems Administration (ASIR) and a specialisation course in Cybersecurity. In my latest role at <strong>Proceso de la Información CLM</strong> I looked after the network and perimeter security (SonicWall, Fortinet, MikroTik and Aruba switches managed from HPE Aruba Central), virtualisation with vSphere and Proxmox, Azure, backups with Veeam and Acronis, hybrid Active Directory and day-to-day user support.',
+        'I am a systems and network administrator based in Albacete, Spain, specialised in cybersecurity, with a Higher National Diploma in Networked Systems Administration (ASIR) and a specialisation course in Cybersecurity. My day-to-day work has covered networking and perimeter security, virtualisation, backups and user support, both on-premises and in Azure.',
         'I like things to work and to be able to prove they work: backups that get validated, alerts before incidents and documentation someone else can follow. That is why outside work I run a homelab on Proxmox with no open ports, MFA and my own monitoring, and write up every step on the <a href="https://blog.jelopez.link">blog</a> (in Spanish).',
       ],
       facts: [
