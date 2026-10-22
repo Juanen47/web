@@ -103,7 +103,7 @@ export const home = {
     skills: {
       title: 'Competencias',
       items: [
-        { title: 'Seguridad', text: 'Firewalls SonicWall y Fortinet, VPN con WireGuard, bastionado de sistemas, MFA con Authelia y auditorías con Lynis.' },
+        { title: 'Seguridad', text: 'Firewalls SonicWall y Fortinet, VPN con WireGuard, bastionado de sistemas, MFA (TOTP) y auditorías con Lynis.' },
         { title: 'Redes', text: 'Routers MikroTik, switches HP ProCurve y Aruba 6200M, gestión centralizada con HPE Aruba Central.' },
         { title: 'Virtualización y cloud', text: 'VMware vSphere, Proxmox VE con contenedores LXC y Microsoft Azure.' },
         { title: 'Copias de seguridad', text: 'Veeam Backup & Replication y Acronis: realización y validación de copias.' },
@@ -114,7 +114,7 @@ export const home = {
     homelab: {
       title: 'El homelab',
       text: 'Un Intel NUC con Proxmox VE donde pruebo lo que luego aplico en el trabajo. Todos los servicios corren en contenedores LXC y solo se publican a través de Cloudflare Tunnel, sin abrir puertos en el router.',
-      stack: ['Proxmox VE', 'LXC', 'Cloudflare Tunnel', 'Authelia', 'WireGuard', 'NPMplus', 'AdGuard Home', 'Uptime Kuma', 'Netdata', 'Homarr', 'Lynis'],
+      stack: ['Proxmox VE', 'LXC', 'Cloudflare Tunnel', 'WireGuard', 'NPMplus', 'AdGuard Home', 'Nextcloud', 'Uptime Kuma', 'Netdata', 'Homarr', 'Lynis'],
     },
     projects: {
       title: 'Proyectos',
@@ -190,7 +190,7 @@ export const home = {
     skills: {
       title: 'Skills',
       items: [
-        { title: 'Security', text: 'SonicWall and Fortinet firewalls, WireGuard VPN, system hardening, MFA with Authelia and Lynis audits.' },
+        { title: 'Security', text: 'SonicWall and Fortinet firewalls, WireGuard VPN, system hardening, MFA (TOTP) and Lynis audits.' },
         { title: 'Networking', text: 'MikroTik routers, HP ProCurve and Aruba 6200M switches, centralised management with HPE Aruba Central.' },
         { title: 'Virtualisation & cloud', text: 'VMware vSphere, Proxmox VE with LXC containers and Microsoft Azure.' },
         { title: 'Backups', text: 'Veeam Backup & Replication and Acronis: running and validating backups.' },
@@ -201,7 +201,7 @@ export const home = {
     homelab: {
       title: 'The homelab',
       text: 'An Intel NUC running Proxmox VE where I try out what I later apply at work. Every service runs in an LXC container and is only published through Cloudflare Tunnel, with no ports open on the router.',
-      stack: ['Proxmox VE', 'LXC', 'Cloudflare Tunnel', 'Authelia', 'WireGuard', 'NPMplus', 'AdGuard Home', 'Uptime Kuma', 'Netdata', 'Homarr', 'Lynis'],
+      stack: ['Proxmox VE', 'LXC', 'Cloudflare Tunnel', 'WireGuard', 'NPMplus', 'AdGuard Home', 'Nextcloud', 'Uptime Kuma', 'Netdata', 'Homarr', 'Lynis'],
     },
     projects: {
       title: 'Projects',
