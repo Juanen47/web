@@ -1,7 +1,6 @@
 /* Fuentes servidas desde el propio dominio: sin peticiones a Google Fonts
-   (más rápido y sin ceder la IP de los visitantes a terceros). */
-@import '@fontsource-variable/inter/wght.css';
-@import '@fontsource/syne/latin-700.css';
-@import '@fontsource/syne/latin-800.css';
+   (más rápido y sin ceder la IP de los visitantes a terceros).
+   Archivo es variable en peso y anchura: la versión ancha hace de display
+   y la normal de texto, con un único fichero. */
+@import '@fontsource-variable/archivo/wdth.css';
 @import '@fontsource/jetbrains-mono/latin-400.css';
-@import '@fontsource/jetbrains-mono/latin-700.css';

@@ -5,7 +5,7 @@ import { SITE, type Lang } from '../i18n/content';
 interface Props { lang: Lang }
 
 const { lang } = Astro.props;
-const updated = lang === 'es' ? '20 de octubre de 2026' : '20 October 2026';
+const updated = lang === 'es' ? '24 de octubre de 2026' : '24 October 2026';
 
 const content = {
   es: {
@@ -28,7 +28,7 @@ const content = {
       },
       {
         title: 'Enlaces externos',
-        body: '<p>Los enlaces a GitHub, LinkedIn o al blog llevan a sitios con sus propias políticas de privacidad. Los comentarios del blog usan Giscus (GitHub Discussions), que solo se activa en las páginas de los artículos.</p>',
+        body: '<p>Los enlaces a GitHub, LinkedIn o al blog llevan a sitios con sus propias políticas de privacidad. Los comentarios del blog usan Giscus (GitHub Discussions), que solo se carga si pulsas «Cargar comentarios» en un artículo.</p>',
       },
       {
         title: 'Tus derechos',
@@ -57,7 +57,7 @@ const content = {
       },
       {
         title: 'External links',
-        body: '<p>Links to GitHub, LinkedIn or the blog lead to sites with their own privacy policies. Blog comments use Giscus (GitHub Discussions), which only loads on article pages.</p>',
+        body: '<p>Links to GitHub, LinkedIn or the blog lead to sites with their own privacy policies. Blog comments use Giscus (GitHub Discussions), which only loads if you click “Load comments” on an article.</p>',
       },
       {
         title: 'Your rights',
@@ -70,21 +70,23 @@ const content = {
 ---
 
 <Base lang={lang} route="privacy" title={content.title} description={content.description}>
-  <header class="hero hero-compact">
-    <p class="hero-tag">{lang === 'es' ? 'AVISO LEGAL · PRIVACIDAD · COOKIES' : 'LEGAL · PRIVACY · COOKIES'}</p>
-    <h1>{content.heading}<span class="accent">.</span></h1>
-    <p class="hero-sub">{content.sub}</p>
-  </header>
+  <div class="wrap">
+    <header class="page-head">
+      <h1>{content.heading}<span class="accent">.</span></h1>
+      <p>{content.sub}</p>
+    </header>
 
-  <section>
-    <div class="about-text prose">
-      {content.sections.map((s) => (
-        <>
-          <h2>{s.title}</h2>
-          <Fragment set:html={s.body} />
-        </>
-      ))}
-      <p class="muted">{content.updated}</p>
-    </div>
-  </section>
+    <section class="block">
+      <div class="block-title" aria-hidden="true"></div>
+      <div class="block-body prose">
+        {content.sections.map((s) => (
+          <>
+            <h2>{s.title}</h2>
+            <Fragment set:html={s.body} />
+          </>
+        ))}
+        <p class="muted">{content.updated}</p>
+      </div>
+    </section>
+  </div>
 </Base>

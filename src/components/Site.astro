@@ -12,6 +12,7 @@ const content = {
     description: 'Cómo está construido jelopez.link: stack, despliegue, rendimiento, privacidad y decisiones de diseño.',
     sub: 'Cómo está construido jelopez.link: stack, despliegue y decisiones de diseño.',
     nav: { stack: 'Stack', structure: 'Estructura', design: 'Diseño' },
+    heading: 'Este sitio',
     stackTitle: 'Stack',
     cards: [
       { title: 'Framework', text: 'Astro: generador de sitios estáticos. Cada página se genera en el build como HTML plano, sin framework de cliente.' },
@@ -26,14 +27,16 @@ const content = {
       { label: 'comentarios', text: 'Giscus, basado en GitHub Discussions. Sin base de datos propia ni coste.' },
       { label: 'idiomas', text: 'Cada página existe en español y en inglés con su propia URL (/ y /en/), generadas en el build y enlazadas con hreflang para los buscadores.' },
       { label: 'privacidad', text: 'Sin cookies, sin analítica y sin recursos de terceros: hasta las fuentes se sirven desde el propio dominio.' },
+      { label: 'JavaScript', text: 'Ninguno. La animación de la portada, el modo oscuro y las transiciones entre páginas son CSS.' },
       { label: 'seguridad', text: 'Cabeceras HTTP estrictas (CSP, HSTS, Permissions-Policy) definidas en el fichero _headers de Cloudflare Pages.' },
     ],
     designTitle: 'Diseño',
-    designText: 'Estilo «liquid glass» inspirado en el de Apple: orbes de color difuminados al fondo y paneles de cristal translúcido con desenfoque, bordes con brillo y un reflejo que sigue al cursor. Paleta oscura con coral como color de acento.',
+    designText: 'La idea es la de un buen plano de red: ordenado, con rótulos claros y sin adornos que no aporten. La portada lo lleva al pie de la letra con un esquema real del homelab en el que un paquete recorre cada camino. El resto es un CV a dos columnas, fácil de leer en diagonal.',
     design: [
-      { label: 'Inter + Mono', text: 'Inter para el texto y la interfaz; JetBrains Mono para etiquetas y detalles técnicos.' },
-      { label: 'Syne', text: 'Tipografía de display para títulos. Peso 800 para los títulos principales.' },
-      { label: 'Acento', text: 'Coral <span class="accent-code">#ff5a5f</span> sobre fondo casi negro, con orbes violeta y azul que dan profundidad al cristal.' },
+      { label: 'Archivo', text: 'Una sola familia variable en peso y anchura: ancha y gruesa para los titulares, normal para el texto. Un único fichero de fuente.' },
+      { label: 'Claro y oscuro', text: 'Sigue la preferencia del sistema. En oscuro el fondo es azul noche, no negro; en claro, papel frío.' },
+      { label: 'Coral', text: 'El color de la marca, el mismo del blog y del favicon. Se reserva para la acción principal y los enlaces.' },
+      { label: 'Movimiento', text: 'Un solo momento animado, el esquema de la portada, más la línea de la experiencia que se rellena al bajar. Todo se desactiva si el sistema pide reducir el movimiento.' },
     ],
     flowTitle: 'Flujo de trabajo',
     flowText: 'Publicar un post es un proceso local: escribir en Markdown o MDX, hacer commit y push. Cloudflare Pages detecta el cambio y despliega en menos de un minuto.',
@@ -49,6 +52,7 @@ const content = {
     description: 'How jelopez.link is built: stack, deployment, performance, privacy and design decisions.',
     sub: 'How jelopez.link is built: stack, deployment and design decisions.',
     nav: { stack: 'Stack', structure: 'Structure', design: 'Design' },
+    heading: 'This site',
     stackTitle: 'Stack',
     cards: [
       { title: 'Framework', text: 'Astro: a static site generator. Every page is built as plain HTML, with no client-side framework.' },
@@ -63,14 +67,16 @@ const content = {
       { label: 'comments', text: 'Giscus, built on GitHub Discussions. No own database and no cost.' },
       { label: 'languages', text: 'Every page exists in Spanish and English with its own URL (/ and /en/), generated at build time and linked with hreflang for search engines.' },
       { label: 'privacy', text: 'No cookies, no analytics and no third-party resources: even the fonts are served from this domain.' },
+      { label: 'JavaScript', text: 'None. The homepage animation, dark mode and page transitions are all CSS.' },
       { label: 'security', text: 'Strict HTTP headers (CSP, HSTS, Permissions-Policy) defined in the Cloudflare Pages _headers file.' },
     ],
     designTitle: 'Design',
-    designText: 'A "liquid glass" style inspired by Apple\'s: blurred colour orbs in the background and translucent glass panels with blur, glowing edges and a highlight that follows the cursor. Dark palette with coral as the accent colour.',
+    designText: 'The idea is a good network diagram: tidy, clearly labelled and free of decoration that adds nothing. The homepage takes that literally with a real diagram of the homelab where a packet travels along each path. The rest is a two-column CV that is easy to skim.',
     design: [
-      { label: 'Inter + Mono', text: 'Inter for text and interface; JetBrains Mono for labels and technical details.' },
-      { label: 'Syne', text: 'Display typeface for headings. Weight 800 for the main titles.' },
-      { label: 'Accent', text: 'Coral <span class="accent-code">#ff5a5f</span> on a near-black background, with violet and blue orbs adding depth to the glass.' },
+      { label: 'Archivo', text: 'A single family that is variable in weight and width: wide and heavy for headings, normal for text. One font file.' },
+      { label: 'Light and dark', text: 'Follows the system preference. In dark mode the background is night blue rather than black; in light mode, cool paper.' },
+      { label: 'Coral', text: 'The brand colour, shared with the blog and the favicon. Reserved for the main action and links.' },
+      { label: 'Motion', text: 'One animated moment, the homepage diagram, plus the experience line that fills as you scroll. All of it switches off if the system asks for reduced motion.' },
     ],
     flowTitle: 'Workflow',
     flowText: 'Publishing a post is a local process: write in Markdown or MDX, commit and push. Cloudflare Pages picks up the change and deploys in under a minute.',
@@ -91,54 +97,66 @@ const content = {
     <li><a href="#diseno">{content.nav.design}</a></li>
   </Fragment>
 
-  <header class="hero">
-    <p class="hero-tag">ASTRO · CLOUDFLARE · GITHUB</p>
-    <h1>{lang === 'es' ? 'Este sitio' : 'This site'}<span class="accent">.</span></h1>
-    <p class="hero-sub">{content.sub}</p>
-  </header>
+  <div class="wrap">
+    <header class="page-head">
+      <h1>{content.heading}<span class="accent">.</span></h1>
+      <p>{content.sub}</p>
+    </header>
 
-  <section id="stack">
-    <h2 class="section-title">{content.stackTitle}</h2>
-    <div class="cards">
-      {content.cards.map((c) => (
-        <div class="card"><h3>{c.title}</h3><p>{c.text}</p></div>
-      ))}
-    </div>
-  </section>
+    <section id="stack" class="block">
+      <h2 class="block-title">{content.stackTitle}</h2>
+      <ul class="block-body skills">
+        {content.cards.map((c) => (
+          <li class="skill"><h3>{c.title}</h3><p>{c.text}</p></li>
+        ))}
+      </ul>
+    </section>
 
-  <section id="estructura">
-    <h2 class="section-title">{content.structureTitle}</h2>
-    <div class="about-text"><p set:html={content.structureText} /></div>
-    <div class="tech-block">
-      {content.rows.map((r) => (
-        <div class="tech-row"><span class="tech-label">{r.label}</span><span class="tech-desc">{r.text}</span></div>
-      ))}
-    </div>
-  </section>
+    <section id="estructura" class="block">
+      <h2 class="block-title">{content.structureTitle}</h2>
+      <div class="block-body">
+        <p class="lede" set:html={content.structureText} />
+        <dl class="rows rows-gap">
+          {content.rows.map((r) => (
+            <div class="row"><dt>{r.label}</dt><dd>{r.text}</dd></div>
+          ))}
+        </dl>
+      </div>
+    </section>
 
-  <section id="diseno">
-    <h2 class="section-title">{content.designTitle}</h2>
-    <div class="about-text"><p>{content.designText}</p></div>
-    <div class="tech-block">
-      {content.design.map((r) => (
-        <div class="tech-row"><span class="tech-label">{r.label}</span><span class="tech-desc" set:html={r.text} /></div>
-      ))}
-    </div>
-  </section>
+    <section id="diseno" class="block">
+      <h2 class="block-title">{content.designTitle}</h2>
+      <div class="block-body">
+        <p class="lede">{content.designText}</p>
+        <ul class="swatches" aria-hidden="true">
+          <li class="swatch"><i style="--c: #0d1420"></i>#0d1420</li>
+          <li class="swatch"><i style="--c: #f3f5f8"></i>#f3f5f8</li>
+          <li class="swatch"><i style="--c: #ff5a5f"></i>#ff5a5f</li>
+          <li class="swatch"><i style="--c: #3ddc97"></i>#3ddc97</li>
+        </ul>
+        <dl class="rows rows-gap">
+          {content.design.map((r) => (
+            <div class="row"><dt>{r.label}</dt><dd set:html={r.text} /></div>
+          ))}
+        </dl>
+      </div>
+    </section>
 
-  <section id="flujo">
-    <h2 class="section-title">{content.flowTitle}</h2>
-    <div class="about-text"><p>{content.flowText}</p></div>
-    <ol class="flow-steps">
-      {content.steps.map((s, i) => (
-        <li class="flow-step">
-          <span class="flow-num">{String(i + 1).padStart(2, '0')}</span>
-          <div>
-            <p class="flow-title">{s.title}</p>
-            <p class="flow-desc" set:html={s.text} />
-          </div>
-        </li>
-      ))}
-    </ol>
-  </section>
+    <section id="flujo" class="block">
+      <h2 class="block-title">{content.flowTitle}</h2>
+      <div class="block-body">
+        <p class="lede">{content.flowText}</p>
+        <ol class="steps rows-gap">
+          {content.steps.map((s) => (
+            <li class="step">
+              <div>
+                <h3>{s.title}</h3>
+                <p set:html={s.text} />
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  </div>
 </Base>

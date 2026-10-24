@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import HeroDiagram from './HeroDiagram.astro';
 import { SITE, home, ui, type Lang } from '../i18n/content';
 
 interface Props { lang: Lang }
@@ -30,118 +31,120 @@ const jsonLd = {
 <Base lang={lang} route="home" title={c.title} description={c.description} jsonLd={jsonLd}>
   <Fragment slot="nav">
     <li><a href="#sobre-mi">{nav.about}</a></li>
-    <li><a href="#experiencia">{nav.experience}</a></li>
+    <li class="hide-xs"><a href="#experiencia">{nav.experience}</a></li>
     <li class="hide-sm"><a href="#proyectos">{nav.projects}</a></li>
     <li><a href="#contacto">{nav.contact}</a></li>
   </Fragment>
 
-  <header class="hero">
-    <p class="hero-tag">{c.tag}</p>
-    <h1>Juan Enrique López<span class="accent">.</span></h1>
-    <p class="hero-sub">{c.role}</p>
-    <div class="hero-buttons">
-      <a href="#contacto" class="btn btn-primary">{c.cta.contact}</a>
-      <a href={SITE.blog} class="btn btn-outline">{c.cta.blog}</a>
-      <a href={SITE.linkedin} class="btn btn-outline" rel="me noopener">LinkedIn</a>
-      <a href={SITE.github} class="btn btn-outline" rel="me noopener">GitHub</a>
-    </div>
-  </header>
-
-  <section id="sobre-mi" aria-labelledby="about-title">
-    <h2 class="section-title" id="about-title">{c.about.title}</h2>
-    <div class="about-grid">
-      <div class="about-text">
-        {c.about.paragraphs.map((p) => <p set:html={p} />)}
+  <div class="wrap">
+    <header class="hero">
+      <div class="hero-copy">
+        <h1><span>Juan Enrique</span> <span>López<span class="accent">.</span></span></h1>
+        <p class="hero-role" set:html={c.role} />
+        <div class="actions">
+          <a href="#contacto" class="btn btn-primary">{c.cta.contact}</a>
+          <a href={SITE.blog} class="btn">{c.cta.blog}</a>
+          <a href={SITE.linkedin} class="icon-link" rel="me noopener" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M5 2h14a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3Zm1.5 7.5V18h2.6V9.5H6.5Zm1.3-3.9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3ZM11 9.5V18h2.6v-4.5c0-1.2.6-1.9 1.6-1.9s1.3.7 1.3 1.8V18H19v-5.1c0-2.2-.8-3.6-3-3.6-1.3 0-2.2.6-2.6 1.4V9.5H11Z"/></svg>
+          </a>
+          <a href={SITE.github} class="icon-link" rel="me noopener" aria-label="GitHub" title="GitHub">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+          </a>
+        </div>
       </div>
-      <dl class="facts">
-        {c.about.facts.map((f) => (
-          <div class="fact">
-            <dt>{f.label}</dt>
-            <dd>{f.value}</dd>
-          </div>
-        ))}
-      </dl>
-    </div>
-  </section>
+      <HeroDiagram lang={lang} />
+    </header>
 
-  <section id="experiencia" aria-labelledby="exp-title">
-    <h2 class="section-title" id="exp-title">{c.experience.title}</h2>
-    <ol class="timeline">
-      {c.experience.items.map((job) => (
-        <li class="job">
-          <div class="job-head">
-            <div>
+    <section id="sobre-mi" class="block" aria-labelledby="about-title">
+      <h2 class="block-title" id="about-title">{c.about.title}</h2>
+      <div class="block-body">
+        {c.about.paragraphs.map((p) => <p class="lede" set:html={p} />)}
+        <dl class="facts">
+          {c.about.facts.map((f) => (
+            <div class="fact">
+              <dt>{f.label}</dt>
+              <dd>{f.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+
+    <section id="experiencia" class="block" aria-labelledby="exp-title">
+      <h2 class="block-title" id="exp-title">{c.experience.title}</h2>
+      <div class="block-body">
+        <ol class="timeline">
+          {c.experience.items.map((job) => (
+            <li class="job">
+              <p class="job-period">{job.period}</p>
               <h3>{job.role}</h3>
               <p class="job-company">{job.company}</p>
-            </div>
-            <span class="tag">{job.period}</span>
-          </div>
-          <ul class="job-points">
-            {job.points.map((p) => <li>{p}</li>)}
-          </ul>
-        </li>
-      ))}
-    </ol>
+              <ul class="job-points">
+                {job.points.map((p) => <li>{p}</li>)}
+              </ul>
+            </li>
+          ))}
+        </ol>
 
-    <h3 class="subsection-title">{c.education.title}</h3>
-    <ul class="edu-list">
-      {c.education.items.map((e) => (
-        <li class="edu">
-          <div>
-            <p class="edu-name">{e.name}</p>
-            <p class="edu-school">{e.school}</p>
-          </div>
-          <span class="tag">{e.period}</span>
-        </li>
-      ))}
-    </ul>
-  </section>
-
-  <section id="competencias" aria-labelledby="skills-title">
-    <h2 class="section-title" id="skills-title">{c.skills.title}</h2>
-    <div class="cards">
-      {c.skills.items.map((s) => (
-        <div class="card">
-          <h3>{s.title}</h3>
-          <p>{s.text}</p>
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <section id="homelab" aria-labelledby="lab-title">
-    <h2 class="section-title" id="lab-title">{c.homelab.title}</h2>
-    <div class="about-text">
-      <p>{c.homelab.text}</p>
-      <ul class="chips">
-        {c.homelab.stack.map((s) => <li>{s}</li>)}
-      </ul>
-    </div>
-  </section>
-
-  <section id="proyectos" aria-labelledby="projects-title">
-    <h2 class="section-title" id="projects-title">{c.projects.title}</h2>
-    <div class="projects-grid">
-      {c.projects.items.map((p) => (
-        <a href={p.href} class="project-card">
-          <div class="project-header">
-            <h3>{p.title}</h3>
-            <span class="tag">{p.tag}</span>
-          </div>
-          <p>{p.text}</p>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <section id="contacto" aria-labelledby="contact-title">
-    <div class="contact-panel">
-      <h2 class="section-title" id="contact-title">{c.contact.title}</h2>
-      <p>{c.contact.text}</p>
-      <div class="hero-buttons">
-        <a href={`mailto:${SITE.email}`} class="btn btn-primary">{SITE.email}</a>
-        <a href={SITE.linkedin} class="btn btn-outline" rel="me noopener">LinkedIn</a>
+        <h3 class="subhead">{c.education.title}</h3>
+        <ul class="edu-list">
+          {c.education.items.map((e) => (
+            <li class="edu">
+              <div>
+                <p class="edu-name">{e.name}</p>
+                <p class="edu-school">{e.school}</p>
+              </div>
+              <span class="edu-period">{e.period}</span>
+            </li>
+          ))}
+        </ul>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section id="competencias" class="block" aria-labelledby="skills-title">
+      <h2 class="block-title" id="skills-title">{c.skills.title}</h2>
+      <ul class="block-body skills">
+        {c.skills.items.map((s) => (
+          <li class="skill">
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section id="homelab" class="block" aria-labelledby="lab-title">
+      <h2 class="block-title" id="lab-title">{c.homelab.title}</h2>
+      <div class="block-body">
+        <p class="lede">{c.homelab.text}</p>
+        <ul class="stack" aria-label="Stack">
+          {c.homelab.stack.map((s) => <li>{s}</li>)}
+        </ul>
+        <a class="more-link" href={c.homelab.link.href}>{c.homelab.link.text}</a>
+      </div>
+    </section>
+
+    <section id="proyectos" class="block" aria-labelledby="projects-title">
+      <h2 class="block-title" id="projects-title">{c.projects.title}</h2>
+      <div class="block-body projects">
+        {c.projects.items.map((p) => (
+          <a href={p.href} class="project">
+            <span class="project-url">{p.url}</span>
+            <h3>{p.title}</h3>
+            <p>{p.text}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section id="contacto" class="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">{c.contact.title}</h2>
+      <p>{c.contact.text}</p>
+      <a class="mail" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      <div class="actions contact-actions">
+        <a href={SITE.linkedin} class="btn" rel="me noopener">LinkedIn</a>
+        <a href={SITE.github} class="btn" rel="me noopener">GitHub</a>
+      </div>
+    </section>
+  </div>
 </Base>
