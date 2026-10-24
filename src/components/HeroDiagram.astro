@@ -1,0 +1,180 @@
+---
+// Esquema del homelab de la portada. SVG con animación solo en CSS: las líneas se
+// dibujan al cargar y luego un paquete recorre cada camino. Con «reducir movimiento»
+// queda estático. Sin IPs, puertos ni nombres internos (mismas reglas que el blog).
+import type { Lang } from '../i18n/content';
+import { home } from '../i18n/content';
+
+interface Props { lang: Lang }
+
+const { lang } = Astro.props;
+const d = home[lang].diagram;
+const services = ['WireGuard', 'AdGuard Home', 'NPMplus', 'Nextcloud', 'Uptime Kuma', 'Homarr'];
+---
+
+<figure class="hd">
+  <svg viewBox="0 0 400 452" role="img" aria-labelledby="hd-title hd-desc" xmlns="http://www.w3.org/2000/svg">
+    <title id="hd-title">{d.title}</title>
+    <desc id="hd-desc">{d.desc}</desc>
+
+    <text class="zone" x="16" y="16">Internet</text>
+
+    <!-- Caminos: se dibujan bajo los nodos -->
+    <path class="wire w1" d="M164 52 H236" pathLength="1" />
+    <path class="wire w2" d="M90 140 V312" pathLength="1" />
+    <path class="wire beat w3" d="M310 252 V140" pathLength="1" />
+    <text class="lbl" x="200" y="45" text-anchor="middle">HTTPS</text>
+
+    <!-- Internet -->
+    <g class="node n1">
+      <rect class="box" x="16" y="28" width="148" height="48" rx="9" />
+      <text class="t" x="90" y="49" text-anchor="middle">{d.visitor[0]}</text>
+      <text class="s" x="90" y="66" text-anchor="middle">{d.visitor[1]}</text>
+    </g>
+    <g class="node n2">
+      <rect class="box ext" x="236" y="28" width="148" height="48" rx="9" />
+      <text class="t" x="310" y="49" text-anchor="middle">{d.cloudflare[0]}</text>
+      <text class="s" x="310" y="66" text-anchor="middle">{d.cloudflare[1]}</text>
+    </g>
+    <g class="node n3">
+      <rect class="box" x="16" y="92" width="148" height="48" rx="9" />
+      <text class="t" x="90" y="113" text-anchor="middle">{d.me[0]}</text>
+      <text class="s" x="90" y="130" text-anchor="middle">{d.me[1]}</text>
+    </g>
+    <g class="node n4">
+      <rect class="box ext" x="236" y="92" width="148" height="48" rx="9" />
+      <text class="t" x="310" y="113" text-anchor="middle">{d.watch[0]}</text>
+      <text class="s" x="310" y="130" text-anchor="middle">{d.watch[1]}</text>
+    </g>
+
+    <text class="lbl" x="98" y="163">{d.vpn}</text>
+    <text class="lbl" x="302" y="163" text-anchor="end">{d.beat}</text>
+
+    <!-- Router -->
+    <g class="node n5">
+      <rect class="band" x="16" y="176" width="368" height="44" rx="10" />
+      <text class="t" x="200" y="195" text-anchor="middle">{d.router[0]}</text>
+      <text class="s" x="200" y="211" text-anchor="middle">{d.router[1]}</text>
+    </g>
+
+    <!-- Servidor -->
+    <g class="node n6">
+      <rect class="host" x="16" y="252" width="368" height="184" rx="14" />
+      <text class="t" x="200" y="277" text-anchor="middle">{d.host[0]}</text>
+      <text class="s" x="200" y="294" text-anchor="middle">{d.host[1]}</text>
+      {services.map((name, i) => {
+        const x = i % 2 === 0 ? 32 : 208;
+        const y = 312 + Math.floor(i / 2) * 38;
+        return (
+          <g class:list={['svc', { vpn: name === 'WireGuard' }]}>
+            <rect x={x} y={y} width="160" height="30" rx="7" />
+            <circle class="led" cx={x + 15} cy={y + 15} r="3.5" />
+            <text class="n" x={x + 27} y={y + 19.8}>{name}</text>
+          </g>
+        );
+      })}
+    </g>
+
+    <!-- Paquetes (solo con animación) -->
+    <circle class="pkt pkt-web" cx="164" cy="52" r="4" />
+    <circle class="pkt pkt-vpn" cx="90" cy="140" r="4" />
+    <circle class="pkt pkt-beat" cx="310" cy="252" r="4" />
+  </svg>
+  <figcaption>
+    {d.caption} <a href={home[lang].homelab.link.href}>{d.link}</a>.
+  </figcaption>
+</figure>
+
+<style>
+  .hd {
+    position: relative;
+    padding: clamp(1rem, 2.5vw, 1.5rem);
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+  }
+
+  svg { display: block; width: 100%; height: auto; overflow: visible; }
+  text { font-family: var(--font-body); }
+
+  .zone { font-size: 11.5px; font-weight: 600; fill: var(--muted); }
+  .t { font-size: 14px; font-weight: 650; fill: var(--text); }
+  .s { font-size: 11.5px; fill: var(--muted); }
+  .lbl { font-size: 11px; font-weight: 500; fill: var(--muted); }
+  .n { font-size: 12.5px; font-weight: 500; fill: var(--text-2); }
+
+  .box { fill: var(--bg); stroke: var(--line-strong); }
+  .box.ext { stroke: var(--ext); fill: color-mix(in srgb, var(--ext) 7%, var(--bg-raised)); }
+  .band { fill: color-mix(in srgb, var(--net) 8%, var(--bg-raised)); stroke: var(--net); }
+  .host { fill: var(--bg); stroke: var(--line-strong); }
+  .svc rect { fill: var(--bg-raised); stroke: var(--line); }
+  .led { fill: var(--ok); }
+
+  .wire { fill: none; stroke: var(--line-strong); stroke-width: 1.5; }
+  .wire.beat { stroke: color-mix(in srgb, var(--ok) 60%, var(--line-strong)); stroke-dasharray: 4 4; }
+
+  /* Retardos de la entrada (sin atributos style: la CSP no permite estilos inline) */
+  .n1 { --d: 0.05s; } .n2 { --d: 0.12s; } .n3 { --d: 0.19s; }
+  .n4 { --d: 0.26s; } .n5 { --d: 0.33s; } .n6 { --d: 0.4s; }
+  .w1 { --d: 0.55s; } .w2 { --d: 0.75s; } .w3 { --d: 0.95s; }
+
+  .pkt { fill: var(--accent); opacity: 0; }
+  .pkt-beat { fill: var(--ok); }
+
+  figcaption {
+    margin-top: 0.9rem;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    /* 1. Los nodos aparecen y las líneas se trazan, una sola vez */
+    .node { animation: node-in 0.6s var(--ease-out) var(--d) both; }
+    .wire:not(.beat) {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: draw 0.7s var(--ease-out) var(--d) forwards;
+    }
+    .wire.beat { animation: node-in 0.6s var(--ease-out) var(--d) both; }
+
+    /* 2. Después, un paquete por camino, en bucle y desfasados */
+    .pkt-web { animation: go-x 6s var(--ease-out) 1.5s infinite; }
+    .pkt-vpn { animation: go-down 6s cubic-bezier(0.45, 0, 0.25, 1) 2.7s infinite; }
+    .pkt-beat { animation: go-up 6s cubic-bezier(0.45, 0, 0.25, 1) 4.1s infinite; }
+
+    /* El LED de WireGuard parpadea cuando llega el paquete de la VPN */
+    .svc.vpn .led { animation: blink 6s linear 2.7s infinite; transform-box: fill-box; transform-origin: center; }
+  }
+
+  @keyframes node-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+
+  @keyframes go-x {
+    0% { opacity: 0; transform: translateX(0); }
+    4% { opacity: 1; }
+    18% { opacity: 1; transform: translateX(72px); }
+    24%, 100% { opacity: 0; transform: translateX(72px); }
+  }
+
+  @keyframes go-down {
+    0% { opacity: 0; transform: translateY(0); }
+    4% { opacity: 1; }
+    26% { opacity: 1; transform: translateY(172px); }
+    30%, 100% { opacity: 0; transform: translateY(172px); }
+  }
+
+  @keyframes go-up {
+    0% { opacity: 0; transform: translateY(0); }
+    4% { opacity: 1; }
+    20% { opacity: 1; transform: translateY(-112px); }
+    26%, 100% { opacity: 0; transform: translateY(-112px); }
+  }
+
+  @keyframes blink {
+    0%, 24% { transform: scale(1); opacity: 1; }
+    27% { transform: scale(1.8); opacity: 1; }
+    34%, 100% { transform: scale(1); opacity: 1; }
+  }
+</style>

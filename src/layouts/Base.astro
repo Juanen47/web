@@ -37,7 +37,9 @@ const homeHref = routes.home[lang];
       <link rel="alternate" hreflang="x-default" href={new URL(routes[route].es, SITE.url).href} />
     </>
   )}
-  <meta name="theme-color" content="#07070b" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f5f8" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d1420" />
   <link rel="icon" href="/favicon.ico" sizes="32x32" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -57,16 +59,17 @@ const homeHref = routes.home[lang];
 </head>
 <body>
   <a href="#main" class="skip-link">{t.skip}</a>
-  <div class="orbs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 
-  <nav aria-label={lang === 'es' ? 'Principal' : 'Main'}>
-    <a href={homeHref} class="brand">jelopez<span class="accent">.</span>link</a>
-    <ul class="nav-links">
-      <slot name="nav" />
-    </ul>
-    {route && (
-      <a href={routes[route][other]} hreflang={other} lang={other} class="lang-switch" aria-label={t.switchLabel} title={t.switchLabel}>{t.switchText}</a>
-    )}
+  <nav class="site-nav" aria-label={lang === 'es' ? 'Principal' : 'Main'}>
+    <div class="wrap">
+      <a href={homeHref} class="brand">jelopez<span class="dot">.</span>link</a>
+      <ul class="nav-links">
+        <slot name="nav" />
+      </ul>
+      {route && (
+        <a href={routes[route][other]} hreflang={other} lang={other} class="lang-switch" aria-label={t.switchLabel} title={t.switchLabel}>{t.switchText}</a>
+      )}
+    </div>
   </nav>
 
   <main id="main">
@@ -74,21 +77,17 @@ const homeHref = routes.home[lang];
   </main>
 
   <footer>
-    <div class="footer-links">
-      <a href={SITE.github} rel="me noopener">GitHub</a>
-      <a href={SITE.linkedin} rel="me noopener">LinkedIn</a>
-      <a href={SITE.blog}>Blog</a>
-      <a href={`mailto:${SITE.email}`}>Email</a>
+    <div class="wrap">
+      <p>© {new Date().getFullYear()} {SITE.name}</p>
+      <ul class="footer-links">
+        <li><a href={SITE.github} rel="me noopener">GitHub</a></li>
+        <li><a href={SITE.linkedin} rel="me noopener">LinkedIn</a></li>
+        <li><a href={SITE.blog}>Blog</a></li>
+        <li><a href={`mailto:${SITE.email}`}>Email</a></li>
+        <li><a href={routes.site[lang]}>{t.footer.site}</a></li>
+        <li><a href={routes.privacy[lang]}>{t.footer.privacy}</a></li>
+      </ul>
     </div>
-    <div class="footer-links footer-meta">
-      <a href={routes.site[lang]}>{t.footer.site}</a>
-      <a href={routes.privacy[lang]}>{t.footer.privacy}</a>
-    </div>
-    <p>© {new Date().getFullYear()} {SITE.name}</p>
   </footer>
-
-  <script>
-    import '../scripts/glass.ts';
-  </script>
 </body>
 </html>

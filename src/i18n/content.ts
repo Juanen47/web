@@ -45,14 +45,27 @@ export const home = {
     title: 'Juan Enrique López Monteagudo · Administrador de Sistemas y Redes',
     description:
       'Administrador de sistemas y redes especializado en ciberseguridad, en Albacete. Firewalls SonicWall y Fortinet, redes MikroTik y Aruba, vSphere, Proxmox, Azure y homelab self-hosted.',
-    tag: 'SYSADMIN · REDES · CIBERSEGURIDAD',
-    role: 'Administrador de Sistemas y Redes especializado en ciberseguridad. Mantengo infraestructuras seguras, monitorizadas y bien documentadas, y en casa hago self-hosting de todo lo que puedo.',
+    role: 'Administrador de <strong>sistemas y redes</strong> especializado en <strong>ciberseguridad</strong>. Mantengo infraestructuras seguras, vigiladas y bien documentadas, y en casa hago self-hosting de todo lo que puedo.',
     cta: { contact: 'Contactar', blog: 'Leer el blog' },
+    diagram: {
+      title: 'Esquema del homelab',
+      desc: 'Tres caminos que no se mezclan. Quien visita la web llega a Cloudflare, donde se sirven la web y el blog. Yo entro desde fuera por la VPN WireGuard, el único puerto abierto del router. El servidor Proxmox solo sale a Internet para enviar un latido a un servicio de vigilancia externa.',
+      visitor: ['Visitante', 'lee la web y el blog'],
+      cloudflare: ['Cloudflare', 'aloja la web y el blog'],
+      me: ['Yo, fuera de casa', 'app de WireGuard'],
+      watch: ['Vigilancia externa', 'avisa si el latido falta'],
+      router: ['Router de casa', 'un solo puerto abierto: la VPN'],
+      host: ['Proxmox VE', 'Intel NUC · contenedores LXC'],
+      vpn: 'VPN cifrada',
+      beat: 'latido',
+      caption: 'El homelab hoy: la web se sirve desde Cloudflare, yo entro por VPN y el servidor solo sale a Internet para avisar.',
+      link: 'Ver los esquemas completos',
+    },
     about: {
       title: 'Sobre mí',
       paragraphs: [
         'Soy administrador de sistemas y redes en Albacete, especializado en ciberseguridad, con el Grado Superior de ASIR y el curso de especialización en Ciberseguridad. Mi día a día ha sido la red y la seguridad perimetral, la virtualización, las copias de seguridad y el soporte a usuarios, tanto en infraestructura propia como en Azure.',
-        'Me gusta que las cosas funcionen y que se pueda demostrar que funcionan: copias que se validan, alertas antes que incidencias y documentación que otro pueda seguir. Por eso fuera del trabajo mantengo un homelab sobre Proxmox, sin puertos abiertos, con MFA y monitorización propia, y cuento cada paso en el <a href="https://blog.jelopez.link">blog</a>.',
+        'Me gusta que las cosas funcionen y que se pueda demostrar que funcionan: copias que se validan, alertas antes que incidencias y documentación que otro pueda seguir. Por eso fuera del trabajo mantengo un homelab sobre Proxmox, con un único puerto abierto (el de la VPN), copias diarias, 2FA y vigilancia propia, y cuento cada paso en el <a href="https://blog.jelopez.link">blog</a>.',
       ],
       facts: [
         { label: 'Ubicación', value: 'Albacete, España' },
@@ -113,14 +126,15 @@ export const home = {
     },
     homelab: {
       title: 'El homelab',
-      text: 'Un Intel NUC con Proxmox VE donde pruebo lo que luego aplico en el trabajo. Todos los servicios corren en contenedores LXC y solo se publican a través de Cloudflare Tunnel, sin abrir puertos en el router.',
-      stack: ['Proxmox VE', 'LXC', 'Cloudflare Tunnel', 'WireGuard', 'NPMplus', 'AdGuard Home', 'Nextcloud', 'Uptime Kuma', 'Netdata', 'Homarr', 'Lynis'],
+      text: 'Un Intel NUC con Proxmox VE donde pruebo lo que luego aplico en el trabajo. Cada servicio corre en su contenedor LXC y solo se alcanza desde casa o por WireGuard: el único puerto abierto en el router es el de la VPN. Copia diaria de todo a un SSD externo, alertas a Telegram y un latido hacia fuera por si el servidor deja de responder.',
+      stack: ['Proxmox VE', 'LXC', 'WireGuard', 'AdGuard Home', 'NPMplus', 'Nextcloud', 'Uptime Kuma', 'Homarr', 'Healthchecks.io', 'Lynis', 'Cloudflare'],
+      link: { text: 'El homelab en dos esquemas, en el blog', href: 'https://blog.jelopez.link/blog/homelab-esquemas-red/' },
     },
     projects: {
       title: 'Proyectos',
       items: [
-        { title: 'Homelab Blog', tag: 'Blog · ES', href: 'https://blog.jelopez.link', text: 'Documentación técnica del homelab: Proxmox, networking, servicios self-hosted, monitorización y hardening.' },
-        { title: 'Este sitio', tag: 'Astro · CF Pages', href: '/este-sitio/', text: 'Stack, despliegue y decisiones de diseño detrás de jelopez.link.' },
+        { title: 'El blog del homelab', url: 'blog.jelopez.link', href: 'https://blog.jelopez.link', text: 'Guías con la configuración real: Proxmox, redes, VPN, DNS, copias de seguridad, monitorización y hardening.' },
+        { title: 'Este sitio', url: 'jelopez.link/este-sitio', href: '/este-sitio/', text: 'Stack, despliegue y decisiones de diseño detrás de esta web: Astro, Cloudflare Pages y cero JavaScript.' },
       ],
     },
     contact: {
@@ -132,14 +146,27 @@ export const home = {
     title: 'Juan Enrique López Monteagudo · Systems & Network Administrator',
     description:
       'Systems and network administrator specialised in cybersecurity, based in Albacete, Spain. SonicWall and Fortinet firewalls, MikroTik and Aruba networks, vSphere, Proxmox, Azure and a self-hosted homelab.',
-    tag: 'SYSADMIN · NETWORKING · CYBERSECURITY',
-    role: 'Systems and network administrator specialised in cybersecurity. I keep infrastructure secure, monitored and well documented, and at home I self-host everything I can.',
+    role: '<strong>Systems and network</strong> administrator specialised in <strong>cybersecurity</strong>. I keep infrastructure secure, monitored and well documented, and at home I self-host everything I can.',
     cta: { contact: 'Get in touch', blog: 'Read the blog' },
+    diagram: {
+      title: 'Homelab diagram',
+      desc: 'Three paths that never mix. Visitors reach Cloudflare, which serves the website and the blog. I connect from outside through the WireGuard VPN, the only port open on the router. The Proxmox server only reaches out to the Internet to send a heartbeat to an external monitoring service.',
+      visitor: ['Visitor', 'reads the site and blog'],
+      cloudflare: ['Cloudflare', 'hosts the site and blog'],
+      me: ['Me, away from home', 'WireGuard app'],
+      watch: ['External monitoring', 'alerts if pings stop'],
+      router: ['Home router', 'one open port: the VPN'],
+      host: ['Proxmox VE', 'Intel NUC · LXC containers'],
+      vpn: 'encrypted VPN',
+      beat: 'heartbeat',
+      caption: 'The homelab today: the site is served from Cloudflare, I get in over VPN, and the server only reaches out to raise alerts.',
+      link: 'See the full diagrams (in Spanish)',
+    },
     about: {
       title: 'About',
       paragraphs: [
         'I am a systems and network administrator based in Albacete, Spain, specialised in cybersecurity, with a Higher National Diploma in Networked Systems Administration (ASIR) and a specialisation course in Cybersecurity. My day-to-day work has covered networking and perimeter security, virtualisation, backups and user support, both on-premises and in Azure.',
-        'I like things to work and to be able to prove they work: backups that get validated, alerts before incidents and documentation someone else can follow. That is why outside work I run a homelab on Proxmox with no open ports, MFA and my own monitoring, and write up every step on the <a href="https://blog.jelopez.link">blog</a> (in Spanish).',
+        'I like things to work and to be able to prove they work: backups that get validated, alerts before incidents and documentation someone else can follow. That is why outside work I run a homelab on Proxmox with a single open port (the VPN), daily backups, 2FA and my own monitoring, and write up every step on the <a href="https://blog.jelopez.link">blog</a> (in Spanish).',
       ],
       facts: [
         { label: 'Location', value: 'Albacete, Spain' },
@@ -200,14 +227,15 @@ export const home = {
     },
     homelab: {
       title: 'The homelab',
-      text: 'An Intel NUC running Proxmox VE where I try out what I later apply at work. Every service runs in an LXC container and is only published through Cloudflare Tunnel, with no ports open on the router.',
-      stack: ['Proxmox VE', 'LXC', 'Cloudflare Tunnel', 'WireGuard', 'NPMplus', 'AdGuard Home', 'Nextcloud', 'Uptime Kuma', 'Netdata', 'Homarr', 'Lynis'],
+      text: 'An Intel NUC running Proxmox VE where I try out what I later apply at work. Each service runs in its own LXC container and can only be reached from home or over WireGuard: the VPN is the only port open on the router. Daily backups of everything to an external SSD, Telegram alerts and an outbound heartbeat in case the server stops responding.',
+      stack: ['Proxmox VE', 'LXC', 'WireGuard', 'AdGuard Home', 'NPMplus', 'Nextcloud', 'Uptime Kuma', 'Homarr', 'Healthchecks.io', 'Lynis', 'Cloudflare'],
+      link: { text: 'The homelab in two diagrams, on the blog (in Spanish)', href: 'https://blog.jelopez.link/blog/homelab-esquemas-red/' },
     },
     projects: {
       title: 'Projects',
       items: [
-        { title: 'Homelab Blog', tag: 'Blog · ES', href: 'https://blog.jelopez.link', text: 'Technical homelab documentation: Proxmox, networking, self-hosted services, monitoring and hardening.' },
-        { title: 'This site', tag: 'Astro · CF Pages', href: '/en/this-site/', text: 'Stack, deployment and design decisions behind jelopez.link.' },
+        { title: 'The homelab blog', url: 'blog.jelopez.link', href: 'https://blog.jelopez.link', text: 'Guides with the real configuration: Proxmox, networking, VPN, DNS, backups, monitoring and hardening. In Spanish.' },
+        { title: 'This site', url: 'jelopez.link/en/this-site', href: '/en/this-site/', text: 'Stack, deployment and design decisions behind this site: Astro, Cloudflare Pages and zero JavaScript.' },
       ],
     },
     contact: {
