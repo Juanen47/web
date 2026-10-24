@@ -20,28 +20,28 @@ const services = ['WireGuard', 'AdGuard Home', 'NPMplus', 'Nextcloud', 'Uptime K
     <text class="zone" x="16" y="16">Internet</text>
 
     <!-- Caminos: se dibujan bajo los nodos -->
-    <path class="wire" style="--d: 0.55s" d="M164 52 H236" pathLength="1" />
-    <path class="wire" style="--d: 0.75s" d="M90 140 V312" pathLength="1" />
-    <path class="wire beat" style="--d: 0.95s" d="M310 252 V140" pathLength="1" />
+    <path class="wire w1" d="M164 52 H236" pathLength="1" />
+    <path class="wire w2" d="M90 140 V312" pathLength="1" />
+    <path class="wire beat w3" d="M310 252 V140" pathLength="1" />
     <text class="lbl" x="200" y="45" text-anchor="middle">HTTPS</text>
 
     <!-- Internet -->
-    <g class="node" style="--d: 0.05s">
+    <g class="node n1">
       <rect class="box" x="16" y="28" width="148" height="48" rx="9" />
       <text class="t" x="90" y="49" text-anchor="middle">{d.visitor[0]}</text>
       <text class="s" x="90" y="66" text-anchor="middle">{d.visitor[1]}</text>
     </g>
-    <g class="node" style="--d: 0.12s">
+    <g class="node n2">
       <rect class="box ext" x="236" y="28" width="148" height="48" rx="9" />
       <text class="t" x="310" y="49" text-anchor="middle">{d.cloudflare[0]}</text>
       <text class="s" x="310" y="66" text-anchor="middle">{d.cloudflare[1]}</text>
     </g>
-    <g class="node" style="--d: 0.19s">
+    <g class="node n3">
       <rect class="box" x="16" y="92" width="148" height="48" rx="9" />
       <text class="t" x="90" y="113" text-anchor="middle">{d.me[0]}</text>
       <text class="s" x="90" y="130" text-anchor="middle">{d.me[1]}</text>
     </g>
-    <g class="node" style="--d: 0.26s">
+    <g class="node n4">
       <rect class="box ext" x="236" y="92" width="148" height="48" rx="9" />
       <text class="t" x="310" y="113" text-anchor="middle">{d.watch[0]}</text>
       <text class="s" x="310" y="130" text-anchor="middle">{d.watch[1]}</text>
@@ -51,14 +51,14 @@ const services = ['WireGuard', 'AdGuard Home', 'NPMplus', 'Nextcloud', 'Uptime K
     <text class="lbl" x="302" y="163" text-anchor="end">{d.beat}</text>
 
     <!-- Router -->
-    <g class="node" style="--d: 0.33s">
+    <g class="node n5">
       <rect class="band" x="16" y="176" width="368" height="44" rx="10" />
       <text class="t" x="200" y="195" text-anchor="middle">{d.router[0]}</text>
       <text class="s" x="200" y="211" text-anchor="middle">{d.router[1]}</text>
     </g>
 
     <!-- Servidor -->
-    <g class="node" style="--d: 0.4s">
+    <g class="node n6">
       <rect class="host" x="16" y="252" width="368" height="184" rx="14" />
       <text class="t" x="200" y="277" text-anchor="middle">{d.host[0]}</text>
       <text class="s" x="200" y="294" text-anchor="middle">{d.host[1]}</text>
@@ -113,6 +113,11 @@ const services = ['WireGuard', 'AdGuard Home', 'NPMplus', 'Nextcloud', 'Uptime K
 
   .wire { fill: none; stroke: var(--line-strong); stroke-width: 1.5; }
   .wire.beat { stroke: color-mix(in srgb, var(--ok) 60%, var(--line-strong)); stroke-dasharray: 4 4; }
+
+  /* Retardos de la entrada (sin atributos style: la CSP no permite estilos inline) */
+  .n1 { --d: 0.05s; } .n2 { --d: 0.12s; } .n3 { --d: 0.19s; }
+  .n4 { --d: 0.26s; } .n5 { --d: 0.33s; } .n6 { --d: 0.4s; }
+  .w1 { --d: 0.55s; } .w2 { --d: 0.75s; } .w3 { --d: 0.95s; }
 
   .pkt { fill: var(--accent); opacity: 0; }
   .pkt-beat { fill: var(--ok); }

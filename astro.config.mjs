@@ -6,6 +6,8 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://jelopez.link',
   integrations: [sitemap({ filter: (page) => !page.includes('/404') })],
-  // Scripts siempre como fichero externo: la CSP de public/_headers no permite scripts inline.
+  // Scripts y estilos siempre como fichero externo: la CSP de public/_headers
+  // no permite nada inline (ni scripts ni estilos).
+  build: { inlineStylesheets: 'never' },
   vite: { build: { assetsInlineLimit: 0 } },
 });

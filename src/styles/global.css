@@ -657,6 +657,11 @@ footer .wrap {
   background: var(--c);
 }
 
+.sw1 { --c: #0d1420; }
+.sw2 { --c: #f3f5f8; }
+.sw3 { --c: #ff5a5f; }
+.sw4 { --c: #3ddc97; }
+
 /* Textos legales */
 .prose { max-width: 68ch; }
 .prose h2 { font-size: 1.2rem; font-stretch: var(--wide); margin: 2.25rem 0 0.6rem; }
