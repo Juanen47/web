@@ -8,7 +8,7 @@ export const SITE = {
   name: 'Juan Enrique López Monteagudo',
   email: 'juanenlopez1459@gmail.com',
   github: 'https://github.com/Juanen47',
-  linkedin: 'https://www.linkedin.com/in/juan-enrique-l%C3%B3pez-monteagudo-2063ab305/',
+  linkedin: 'https://www.linkedin.com/in/juanen-lopez-monteagudo/',
   blog: 'https://blog.jelopez.link',
 };
 
