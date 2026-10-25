@@ -9,7 +9,7 @@ interface Props { lang: Lang }
 
 const { lang } = Astro.props;
 const d = home[lang].diagram;
-const services = ['WireGuard', 'AdGuard Home', 'NPMplus', 'Nextcloud', 'Uptime Kuma', 'Homarr'];
+const services = ['WireGuard', 'AdGuard Home', 'NPMplus', 'Nextcloud', 'Uptime Kuma', d.panel];
 ---
 
 <figure class="hd">
