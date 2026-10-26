@@ -128,7 +128,7 @@ export const home = {
     homelab: {
       title: 'El homelab',
       text: 'Un Intel NUC con Proxmox VE donde pruebo lo que luego aplico en el trabajo. Cada servicio corre en su contenedor LXC y solo se alcanza desde casa o por WireGuard: el único puerto abierto en el router es el de la VPN. Copia diaria de todo a un SSD externo, alertas a Telegram y un latido hacia fuera por si el servidor deja de responder.',
-      stack: ['Proxmox VE', 'LXC', 'WireGuard', 'AdGuard Home', 'NPMplus', 'Nextcloud', 'Uptime Kuma', 'FastAPI', 'HTMX', 'Healthchecks.io', 'Lynis', 'Cloudflare'],
+      stack: ['Proxmox VE', 'LXC', 'WireGuard', 'AdGuard Home', 'NPMplus', 'Nextcloud', 'Jellyfin', 'Uptime Kuma', 'FastAPI', 'HTMX', 'Healthchecks.io', 'Lynis', 'Cloudflare'],
       link: { text: 'El homelab en dos esquemas, en el blog', href: 'https://blog.jelopez.link/blog/homelab-esquemas-red/' },
     },
     projects: {
@@ -230,7 +230,7 @@ export const home = {
     homelab: {
       title: 'The homelab',
       text: 'An Intel NUC running Proxmox VE where I try out what I later apply at work. Each service runs in its own LXC container and can only be reached from home or over WireGuard: the VPN is the only port open on the router. Daily backups of everything to an external SSD, Telegram alerts and an outbound heartbeat in case the server stops responding.',
-      stack: ['Proxmox VE', 'LXC', 'WireGuard', 'AdGuard Home', 'NPMplus', 'Nextcloud', 'Uptime Kuma', 'FastAPI', 'HTMX', 'Healthchecks.io', 'Lynis', 'Cloudflare'],
+      stack: ['Proxmox VE', 'LXC', 'WireGuard', 'AdGuard Home', 'NPMplus', 'Nextcloud', 'Jellyfin', 'Uptime Kuma', 'FastAPI', 'HTMX', 'Healthchecks.io', 'Lynis', 'Cloudflare'],
       link: { text: 'The homelab in two diagrams, on the blog (in Spanish)', href: 'https://blog.jelopez.link/blog/homelab-esquemas-red/' },
     },
     projects: {

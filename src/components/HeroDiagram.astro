@@ -9,11 +9,11 @@ interface Props { lang: Lang }
 
 const { lang } = Astro.props;
 const d = home[lang].diagram;
-const services = ['WireGuard', 'AdGuard Home', 'NPMplus', 'Nextcloud', 'Uptime Kuma', d.panel];
+const services = ['WireGuard', 'AdGuard Home', 'NPMplus', 'Nextcloud', 'Uptime Kuma', d.panel, 'Jellyfin'];
 ---
 
 <figure class="hd">
-  <svg viewBox="0 0 400 452" role="img" aria-labelledby="hd-title hd-desc" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="0 0 400 490" role="img" aria-labelledby="hd-title hd-desc" xmlns="http://www.w3.org/2000/svg">
     <title id="hd-title">{d.title}</title>
     <desc id="hd-desc">{d.desc}</desc>
 
@@ -59,7 +59,7 @@ const services = ['WireGuard', 'AdGuard Home', 'NPMplus', 'Nextcloud', 'Uptime K
 
     <!-- Servidor -->
     <g class="node n6">
-      <rect class="host" x="16" y="252" width="368" height="184" rx="14" />
+      <rect class="host" x="16" y="252" width="368" height="222" rx="14" />
       <text class="t" x="200" y="277" text-anchor="middle">{d.host[0]}</text>
       <text class="s" x="200" y="294" text-anchor="middle">{d.host[1]}</text>
       {services.map((name, i) => {
