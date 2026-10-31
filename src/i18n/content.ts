@@ -18,6 +18,7 @@ export const routes = {
   site: { es: '/este-sitio/', en: '/en/this-site/' },
   privacy: { es: '/privacidad/', en: '/en/privacy/' },
   cv: { es: '/cv/', en: '/en/cv/' },
+  homelab: { es: '/homelab/', en: '/en/homelab/' },
 } as const;
 
 // PDF del CV en cada idioma. Se generan desde la página /cv/ con `npm run cv:pdf`
@@ -35,7 +36,7 @@ export const ui = {
     switchLabel: 'Read in English',
     switchText: 'EN',
     home: 'Inicio',
-    nav: { about: 'Sobre mí', experience: 'Experiencia', projects: 'Proyectos', cv: 'CV', contact: 'Contacto' },
+    nav: { about: 'Sobre mí', experience: 'Experiencia', projects: 'Proyectos', homelab: 'Homelab', cv: 'CV', contact: 'Contacto' },
     footer: { privacy: 'Privacidad y cookies', site: 'Cómo está hecha' },
   },
   en: {
@@ -43,7 +44,7 @@ export const ui = {
     switchLabel: 'Leer en español',
     switchText: 'ES',
     home: 'Home',
-    nav: { about: 'About', experience: 'Experience', projects: 'Projects', cv: 'CV', contact: 'Contact' },
+    nav: { about: 'About', experience: 'Experience', projects: 'Projects', homelab: 'Homelab', cv: 'CV', contact: 'Contact' },
     footer: { privacy: 'Privacy & cookies', site: 'How it is built' },
   },
 } as const;
@@ -141,7 +142,7 @@ export const home = {
       title: 'El homelab',
       text: 'Un Intel NUC con Proxmox VE donde pruebo lo que luego aplico en el trabajo. Cada servicio corre en su contenedor LXC y solo se alcanza desde casa o por WireGuard: el único puerto abierto en el router es el de la VPN. Copia diaria de todo a un SSD externo, alertas a Telegram y un latido hacia fuera por si el servidor deja de responder.',
       stack: ['Proxmox VE', 'LXC', 'WireGuard', 'AdGuard Home', 'NPMplus', 'Nextcloud', 'Jellyfin', 'Uptime Kuma', 'FastAPI', 'HTMX', 'Healthchecks.io', 'Lynis', 'Cloudflare'],
-      link: { text: 'El homelab en dos esquemas, en el blog', href: 'https://blog.jelopez.link/blog/homelab-esquemas-red/' },
+      link: { text: 'Ficha técnica y servicios del homelab', href: '/homelab/' },
     },
     projects: {
       title: 'Proyectos',
@@ -203,6 +204,11 @@ export const home = {
           link: 'Cómo está hecha',
         },
       ],
+    },
+    blogFeed: {
+      title: 'Del blog',
+      intro: 'Lo último que he publicado. Cada artículo cuenta una pieza del homelab con la configuración real.',
+      all: 'Todos los artículos',
     },
     seeking: {
       title: 'Qué busco',
@@ -310,7 +316,7 @@ export const home = {
       title: 'The homelab',
       text: 'An Intel NUC running Proxmox VE where I try out what I later apply at work. Each service runs in its own LXC container and can only be reached from home or over WireGuard: the VPN is the only port open on the router. Daily backups of everything to an external SSD, Telegram alerts and an outbound heartbeat in case the server stops responding.',
       stack: ['Proxmox VE', 'LXC', 'WireGuard', 'AdGuard Home', 'NPMplus', 'Nextcloud', 'Jellyfin', 'Uptime Kuma', 'FastAPI', 'HTMX', 'Healthchecks.io', 'Lynis', 'Cloudflare'],
-      link: { text: 'The homelab in two diagrams, on the blog (in Spanish)', href: 'https://blog.jelopez.link/blog/homelab-esquemas-red/' },
+      link: { text: 'Homelab spec sheet and services', href: '/en/homelab/' },
     },
     projects: {
       title: 'Projects',
@@ -373,6 +379,11 @@ export const home = {
         },
       ],
     },
+    blogFeed: {
+      title: 'From the blog',
+      intro: 'My latest posts, written in Spanish. Each one covers a piece of the homelab with the real configuration.',
+      all: 'All posts',
+    },
     seeking: {
       title: 'What I am looking for',
       text: 'A role where I can keep growing in systems, networking and security.',
@@ -427,5 +438,124 @@ export const cvPage = {
     languagesTitle: 'Languages',
     languages: 'Spanish native · English B2 reading and writing (not certified), speaking improving',
     portfolio: 'Portfolio and projects',
+  },
+};
+
+// Página /homelab/: ficha técnica y servicios. Regla: nada de IPs, puertos,
+// IDs de contenedor ni nombres internos; solo lo que se puede contar en público.
+export const homelabPage = {
+  es: {
+    title: 'El homelab · Juan Enrique López',
+    description: 'Ficha técnica del homelab de Juan Enrique López: un Intel NUC con Proxmox VE, servicios en contenedores LXC, un único puerto abierto, copias diarias y vigilancia externa.',
+    heading: 'El homelab',
+    sub: 'Donde pruebo lo que luego aplico en el trabajo. Un equipo pequeño, bien vigilado y documentado de principio a fin.',
+    nav: { hardware: 'Equipo', services: 'Servicios', security: 'Seguridad', backups: 'Copias' },
+    diagramTitle: 'Cómo encaja todo',
+    hardwareTitle: 'El equipo',
+    hardware: [
+      { label: 'Equipo', value: 'Intel NUC, silencioso, compacto y de bajo consumo' },
+      { label: 'Procesador', value: 'Intel N150, 4 núcleos, con gráfica integrada (Quick Sync para Jellyfin)' },
+      { label: 'Memoria', value: '16 GB de RAM' },
+      { label: 'Disco interno', value: 'SSD de 512 GB para el sistema y los contenedores' },
+      { label: 'Disco externo', value: 'SSD de 2 TB por USB para las copias de seguridad y los datos de la nube' },
+      { label: 'Hipervisor', value: 'Proxmox VE, con cada servicio en su propio contenedor LXC' },
+      { label: 'Corte de luz', value: 'Arranca solo al volver la corriente y levanta los servicios en orden' },
+    ],
+    servicesTitle: 'Servicios',
+    servicesIntro: 'Cada uno en su contenedor, con su copia diaria y su artículo en el blog.',
+    groups: [
+      { name: 'Red y acceso', items: [
+        { name: 'WireGuard', text: 'VPN para entrar desde fuera. Es el único puerto abierto en el router.', href: '""" + B + """wireguard-acceso-remoto/' },
+        { name: 'AdGuard Home', text: 'DNS de toda la casa, con bloqueo de publicidad y nombres internos.', href: '""" + B + """adguard-home-dns/' },
+        { name: 'NPMplus', text: 'Proxy inverso con certificados válidos de Let’s Encrypt para los servicios internos.', href: '""" + B + """npmplus-reverse-proxy/' },
+      ] },
+      { name: 'Nube y multimedia', items: [
+        { name: 'Nextcloud', text: 'Nube personal para archivos y fotos, con 2FA y acceso solo desde casa o por VPN.', href: '""" + B + """nextcloud-nube-personal/' },
+        { name: 'Jellyfin', text: 'Películas y series, con transcodificación por hardware y la misma carpeta que Nextcloud.', href: '""" + B + """jellyfin-peliculas-series/' },
+      ] },
+      { name: 'Vigilancia y gestión', items: [
+        { name: 'Panel propio', text: 'Hecho en Python: estado, copias, registros y tareas de todo el homelab en una pantalla.', href: '""" + B + """panel-homelab-propio/' },
+        { name: 'Uptime Kuma', text: 'Comprueba cada servicio y avisa por Telegram si algo deja de responder.', href: '""" + B + """uptime-kuma-telegram/' },
+        { name: 'Healthchecks.io', text: 'Vigilancia desde fuera: si el servidor deja de mandar su latido, llega un aviso.', href: '""" + B + """homelab-esquemas-red/' },
+      ] },
+    ],
+    securityTitle: 'Seguridad',
+    security: [
+      'Un solo puerto abierto en el router, el de la VPN. Ningún panel de administración se ve desde Internet.',
+      'Cortafuegos de Proxmox que solo admite la red de casa para la administración.',
+      'Segundo factor (TOTP) en Proxmox, Nextcloud y el panel propio.',
+      'SSH solo con claves, sin acceso de root por contraseña, y fail2ban donde hay algo expuesto.',
+      'Bastionado medido con Lynis en el host y en los contenedores.',
+      'Permisos mínimos: el panel y los accesos de mantenimiento tienen roles hechos a medida.',
+    ],
+    backupsTitle: 'Copias y recuperación',
+    backups: [
+      'Copia de todos los contenedores cada noche al SSD externo, con retención de 7 diarias, 4 semanales y 3 mensuales.',
+      'Restauración probada: un contenedor se recupera entero desde la copia de la noche anterior.',
+      'Aviso por correo si una copia falla y latido a un servicio externo cuando termina bien.',
+      'Registros volcados a disco cada hora y snapshot antes de cada actualización.',
+    ],
+    nextTitle: 'Lo siguiente',
+    next: 'Una copia fuera de casa, cifrada, para cumplir la regla 3-2-1 completa.',
+    blogLink: 'Toda la serie en el blog: El homelab desde cero',
+    blogHref: 'https://blog.jelopez.link/serie/el-homelab-desde-cero/',
+    read: 'Leer el artículo',
+  },
+  en: {
+    title: 'The homelab · Juan Enrique López',
+    description: 'Spec sheet of Juan Enrique López’s homelab: an Intel NUC running Proxmox VE, services in LXC containers, a single open port, daily backups and external monitoring.',
+    heading: 'The homelab',
+    sub: 'Where I try out what I later apply at work. A small machine, closely monitored and documented end to end.',
+    nav: { hardware: 'Hardware', services: 'Services', security: 'Security', backups: 'Backups' },
+    diagramTitle: 'How it fits together',
+    hardwareTitle: 'Hardware',
+    hardware: [
+      { label: 'Machine', value: 'Intel NUC: quiet, compact and low-power' },
+      { label: 'CPU', value: 'Intel N150, 4 cores, with integrated graphics (Quick Sync for Jellyfin)' },
+      { label: 'Memory', value: '16 GB RAM' },
+      { label: 'Internal disk', value: '512 GB SSD for the system and containers' },
+      { label: 'External disk', value: '2 TB USB SSD for backups and cloud data' },
+      { label: 'Hypervisor', value: 'Proxmox VE, with each service in its own LXC container' },
+      { label: 'Power cut', value: 'Boots by itself when power returns and starts services in order' },
+    ],
+    servicesTitle: 'Services',
+    servicesIntro: 'Each one in its own container, with a daily backup and a write-up on the blog (in Spanish).',
+    groups: [
+      { name: 'Network & access', items: [
+        { name: 'WireGuard', text: 'VPN to get in from outside. It is the only port open on the router.', href: '""" + B + """wireguard-acceso-remoto/' },
+        { name: 'AdGuard Home', text: 'DNS for the whole house, with ad blocking and internal names.', href: '""" + B + """adguard-home-dns/' },
+        { name: 'NPMplus', text: 'Reverse proxy with valid Let’s Encrypt certificates for internal services.', href: '""" + B + """npmplus-reverse-proxy/' },
+      ] },
+      { name: 'Cloud & media', items: [
+        { name: 'Nextcloud', text: 'Personal cloud for files and photos, with 2FA and access only from home or over VPN.', href: '""" + B + """nextcloud-nube-personal/' },
+        { name: 'Jellyfin', text: 'Films and series, with hardware transcoding and the same folder as Nextcloud.', href: '""" + B + """jellyfin-peliculas-series/' },
+      ] },
+      { name: 'Monitoring & management', items: [
+        { name: 'Custom dashboard', text: 'Built in Python: status, backups, logs and tasks for the whole homelab on one screen.', href: '""" + B + """panel-homelab-propio/' },
+        { name: 'Uptime Kuma', text: 'Checks every service and alerts on Telegram if something stops responding.', href: '""" + B + """uptime-kuma-telegram/' },
+        { name: 'Healthchecks.io', text: 'Monitoring from outside: if the server stops sending its heartbeat, an alert goes out.', href: '""" + B + """homelab-esquemas-red/' },
+      ] },
+    ],
+    securityTitle: 'Security',
+    security: [
+      'A single open port on the router: the VPN. No admin interface is reachable from the Internet.',
+      'Proxmox firewall that only allows the home network for administration.',
+      'Second factor (TOTP) on Proxmox, Nextcloud and the custom dashboard.',
+      'Key-only SSH, no root password logins, and fail2ban wherever something is exposed.',
+      'Hardening measured with Lynis on the host and the containers.',
+      'Least privilege: the dashboard and maintenance access use custom roles.',
+    ],
+    backupsTitle: 'Backups & recovery',
+    backups: [
+      'Every container backed up nightly to the external SSD, keeping 7 daily, 4 weekly and 3 monthly copies.',
+      'Restores tested: a container comes back whole from last night’s backup.',
+      'Email alert if a backup fails and a heartbeat to an external service when it succeeds.',
+      'Logs flushed to disk every hour and a snapshot before every update.',
+    ],
+    nextTitle: 'Next up',
+    next: 'An encrypted off-site copy to complete the 3-2-1 rule.',
+    blogLink: 'The full series on the blog (in Spanish): El homelab desde cero',
+    blogHref: 'https://blog.jelopez.link/serie/el-homelab-desde-cero/',
+    read: 'Read the post',
   },
 };

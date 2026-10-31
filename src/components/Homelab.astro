@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import HeroDiagram from './HeroDiagram.astro';
+import { SITE, homelabPage, routes, type Lang } from '../i18n/content';
+
+interface Props { lang: Lang }
+
+const { lang } = Astro.props;
+const t = homelabPage[lang];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: t.heading,
+  description: t.description,
+  inLanguage: lang,
+  url: new URL(routes.homelab[lang], SITE.url).href,
+  author: { '@type': 'Person', name: SITE.name, url: SITE.url },
+};
+---
+
+<Base lang={lang} route="homelab" title={t.title} description={t.description} jsonLd={jsonLd}>
+  <Fragment slot="nav">
+    <li class="hide-xs"><a href="#equipo">{t.nav.hardware}</a></li>
+    <li><a href="#servicios">{t.nav.services}</a></li>
+    <li class="hide-sm"><a href="#seguridad">{t.nav.security}</a></li>
+    <li class="hide-sm"><a href="#copias">{t.nav.backups}</a></li>
+  </Fragment>
+
+  <div class="wrap">
+    <header class="hero lab-hero">
+      <div class="hero-copy">
+        <h1>{t.heading}<span class="accent">.</span></h1>
+        <p class="hero-role">{t.sub}</p>
+      </div>
+      <HeroDiagram lang={lang} />
+    </header>
+
+    <section id="equipo" class="block" aria-labelledby="hw-title">
+      <h2 class="block-title" id="hw-title">{t.hardwareTitle}</h2>
+      <div class="block-body">
+        <dl class="spec">
+          {t.hardware.map((h) => (
+            <div>
+              <dt>{h.label}</dt>
+              <dd>{h.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+
+    <section id="servicios" class="block" aria-labelledby="svc-title">
+      <h2 class="block-title" id="svc-title">{t.servicesTitle}</h2>
+      <div class="block-body">
+        <p class="lede">{t.servicesIntro}</p>
+        {t.groups.map((g) => (
+          <div class="svc-group">
+            <h3 class="subhead">{g.name}</h3>
+            <ul class="svc-list">
+              {g.items.map((i) => (
+                <li>
+                  <a href={i.href}>
+                    <span class="svc-name">{i.name}</span>
+                    <span class="svc-text">{i.text}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="seguridad" class="block" aria-labelledby="sec-title">
+      <h2 class="block-title" id="sec-title">{t.securityTitle}</h2>
+      <ul class="block-body checks">
+        {t.security.map((x) => <li>{x}</li>)}
+      </ul>
+    </section>
+
+    <section id="copias" class="block" aria-labelledby="bk-title">
+      <h2 class="block-title" id="bk-title">{t.backupsTitle}</h2>
+      <div class="block-body">
+        <ul class="checks">
+          {t.backups.map((x) => <li>{x}</li>)}
+        </ul>
+        <h3 class="subhead">{t.nextTitle}</h3>
+        <p class="lede">{t.next}</p>
+        <a class="more-link" href={t.blogHref}>{t.blogLink}</a>
+      </div>
+    </section>
+  </div>
+</Base>
