@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import HeroDiagram from './HeroDiagram.astro';
-import { SITE, home, ui, type Lang } from '../i18n/content';
+import { SITE, cvPdf, home, routes, ui, type Lang } from '../i18n/content';
 
 interface Props { lang: Lang }
 
@@ -21,7 +21,7 @@ const jsonLd = {
     jobTitle: lang === 'es' ? 'Administrador de Sistemas y Redes' : 'Systems and Network Administrator',
     address: { '@type': 'PostalAddress', addressLocality: 'Albacete', addressCountry: 'ES' },
     alumniOf: { '@type': 'EducationalOrganization', name: 'IES Leonardo Da Vinci' },
-    knowsAbout: ['Ciberseguridad', 'SonicWall', 'Fortinet', 'MikroTik', 'Aruba', 'VMware vSphere', 'Proxmox VE', 'Microsoft Azure', 'Veeam', 'Active Directory', 'WireGuard', 'PowerShell', 'Bash'],
+    knowsAbout: ['Ciberseguridad', 'SonicWall', 'Fortinet', 'MikroTik', 'Aruba', 'VMware vSphere', 'Proxmox VE', 'Microsoft Azure', 'Veeam', '3CX', 'VoIP', 'Active Directory', 'WireGuard', 'PowerShell', 'Bash'],
     knowsLanguage: ['es', 'en'],
     sameAs: [SITE.github, SITE.linkedin, SITE.blog],
   },
@@ -33,16 +33,19 @@ const jsonLd = {
     <li><a href="#sobre-mi">{nav.about}</a></li>
     <li class="hide-xs"><a href="#experiencia">{nav.experience}</a></li>
     <li class="hide-sm"><a href="#proyectos">{nav.projects}</a></li>
+    <li><a href={routes.cv[lang]}>{nav.cv}</a></li>
     <li><a href="#contacto">{nav.contact}</a></li>
   </Fragment>
 
   <div class="wrap">
     <header class="hero">
       <div class="hero-copy">
+        <p class="status"><span class="status-dot" aria-hidden="true"></span>{c.availability}</p>
         <h1><span>Juan Enrique</span> <span>López<span class="accent">.</span></span></h1>
         <p class="hero-role" set:html={c.role} />
         <div class="actions">
           <a href="#contacto" class="btn btn-primary">{c.cta.contact}</a>
+          <a href={cvPdf[lang]} class="btn" download>{c.cta.cv}</a>
           <a href={SITE.blog} class="btn">{c.cta.blog}</a>
           <a href={SITE.linkedin} class="icon-link" rel="me noopener" aria-label="LinkedIn" title="LinkedIn">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M5 2h14a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3Zm1.5 7.5V18h2.6V9.5H6.5Zm1.3-3.9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3ZM11 9.5V18h2.6v-4.5c0-1.2.6-1.9 1.6-1.9s1.3.7 1.3 1.8V18H19v-5.1c0-2.2-.8-3.6-3-3.6-1.3 0-2.2.6-2.6 1.4V9.5H11Z"/></svg>
@@ -126,14 +129,39 @@ const jsonLd = {
 
     <section id="proyectos" class="block" aria-labelledby="projects-title">
       <h2 class="block-title" id="projects-title">{c.projects.title}</h2>
-      <div class="block-body projects">
-        {c.projects.items.map((p) => (
-          <a href={p.href} class="project">
-            <span class="project-url">{p.url}</span>
-            <h3>{p.title}</h3>
-            <p>{p.text}</p>
-          </a>
-        ))}
+      <div class="block-body">
+        <p class="lede">{c.projects.intro}</p>
+        <ul class="cases">
+          {c.projects.items.map((p) => (
+            <li class="case">
+              <h3>{p.title}</h3>
+              <dl class="case-steps">
+                <div><dt>{c.projects.labels.problem}</dt><dd>{p.problem}</dd></div>
+                <div><dt>{c.projects.labels.solution}</dt><dd>{p.solution}</dd></div>
+                <div><dt>{c.projects.labels.result}</dt><dd>{p.result}</dd></div>
+              </dl>
+              <ul class="case-tags" aria-label="Stack">
+                {p.tags.map((t) => <li>{t}</li>)}
+              </ul>
+              <a class="case-link" href={p.href}>{p.link}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section id="busco" class="block" aria-labelledby="seeking-title">
+      <h2 class="block-title" id="seeking-title">{c.seeking.title}</h2>
+      <div class="block-body">
+        <p class="lede">{c.seeking.text}</p>
+        <dl class="rows rows-gap">
+          {c.seeking.items.map((i) => (
+            <div class="row">
+              <dt>{i.label}</dt>
+              <dd>{i.value}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
 
@@ -144,6 +172,7 @@ const jsonLd = {
       <div class="actions contact-actions">
         <a href={SITE.linkedin} class="btn" rel="me noopener">LinkedIn</a>
         <a href={SITE.github} class="btn" rel="me noopener">GitHub</a>
+        <a href={cvPdf[lang]} class="btn" download>{c.cta.cv}</a>
       </div>
     </section>
   </div>

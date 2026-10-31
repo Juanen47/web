@@ -1,0 +1,15 @@
+{
+  "name": "Juan Enrique López · jelopez.link",
+  "short_name": "jelopez",
+  "description": "Portafolio de Juan Enrique López, administrador de sistemas y redes.",
+  "start_url": "/",
+  "lang": "es",
+  "display": "browser",
+  "background_color": "#0d1420",
+  "theme_color": "#0d1420",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
