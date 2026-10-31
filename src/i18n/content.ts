@@ -209,7 +209,7 @@ export const home = {
       text: 'Un puesto donde seguir creciendo en sistemas, redes y seguridad.',
       items: [
         { label: 'Puestos', value: 'Administración de sistemas y redes, técnico de sistemas, ciberseguridad (SOC o blue team) o soporte avanzado.' },
-        { label: 'Modalidad', value: 'Presencial en Albacete, híbrido o en remoto. Carnet B.' },
+        { label: 'Modalidad', value: 'En primer lugar en Albacete, presencial o híbrido. También en localidades cercanas y en remoto desde cualquier parte. Carnet B.' },
         { label: 'Incorporación', value: 'Inmediata.' },
       ],
     },
@@ -378,7 +378,7 @@ export const home = {
       text: 'A role where I can keep growing in systems, networking and security.',
       items: [
         { label: 'Roles', value: 'Systems and network administration, systems technician, cybersecurity (SOC or blue team) or advanced support.' },
-        { label: 'Work mode', value: 'On-site in Albacete, hybrid or remote. Driving licence.' },
+        { label: 'Work mode', value: 'Albacete first, on-site or hybrid. Also nearby towns, and fully remote from anywhere. Driving licence.' },
         { label: 'Start date', value: 'Immediately.' },
       ],
     },
