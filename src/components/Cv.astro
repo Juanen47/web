@@ -1,0 +1,98 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE, cvPage, cvPdf, home, routes, type Lang } from '../i18n/content';
+
+interface Props { lang: Lang }
+
+const { lang } = Astro.props;
+const c = home[lang];
+const t = cvPage[lang];
+const host = (u: string) => u.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+---
+
+<Base lang={lang} route="cv" title={t.title} description={t.description}>
+  <Fragment slot="nav">
+    <li><a href={routes.home[lang]}>{lang === 'es' ? 'Inicio' : 'Home'}</a></li>
+    <li><a href={cvPdf[lang]} download>PDF</a></li>
+  </Fragment>
+
+  <div class="wrap">
+    <article class="cv">
+      <header class="cv-head">
+        <h1>{SITE.name}</h1>
+        <p class="cv-role">{t.role}</p>
+        <ul class="cv-contact">
+          <li>{t.location}</li>
+          <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+          <li><a href={SITE.url}>{host(SITE.url)}</a></li>
+          <li><a href={SITE.linkedin} rel="me noopener">{host(SITE.linkedin)}</a></li>
+          <li><a href={SITE.github} rel="me noopener">{host(SITE.github)}</a></li>
+          <li>{t.licence}</li>
+          <li>{t.availability}</li>
+        </ul>
+        <p class="cv-note">{t.sub}</p>
+        <div class="actions cv-actions">
+          <a href={cvPdf[lang]} class="btn btn-primary" download>{t.download}</a>
+          <a href={routes.home[lang]} class="btn">{t.back}</a>
+        </div>
+      </header>
+
+      <section class="cv-sec">
+        <h2>{t.profileTitle}</h2>
+        <p>{t.profile}</p>
+      </section>
+
+      <section class="cv-sec">
+        <h2>{c.experience.title}</h2>
+        {c.experience.items.map((job) => (
+          <div class="cv-job">
+            <div class="cv-line">
+              <h3>{job.role} <span>· {job.company}</span></h3>
+              <p class="cv-date">{job.period}</p>
+            </div>
+            <ul>
+              {job.points.map((p) => <li>{p}</li>)}
+            </ul>
+          </div>
+        ))}
+      </section>
+
+      <section class="cv-sec">
+        <h2>{c.skills.title}</h2>
+        <dl class="cv-skills">
+          {c.skills.items.map((s) => (
+            <div>
+              <dt>{s.title}</dt>
+              <dd>{s.text}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <section class="cv-sec">
+        <h2>{c.education.title}</h2>
+        {c.education.items.map((e) => (
+          <div class="cv-line">
+            <h3>{e.name} <span>· {e.school}</span></h3>
+            <p class="cv-date">{e.period}</p>
+          </div>
+        ))}
+      </section>
+
+      <section class="cv-sec">
+        <h2>{t.languagesTitle}</h2>
+        <p>{t.languages}</p>
+      </section>
+      <section class="cv-sec">
+        <h2>{t.projectsTitle}</h2>
+        <ul class="cv-projects">
+          {c.projects.items.map((p) => (
+            <li><strong>{p.title}.</strong> {p.result}</li>
+          ))}
+        </ul>
+        <p class="cv-more">{t.portfolio}: <a href={SITE.url}>{host(SITE.url)}</a> · Blog: <a href={SITE.blog}>{host(SITE.blog)}</a></p>
+      </section>
+
+    </article>
+  </div>
+</Base>
