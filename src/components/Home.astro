@@ -2,12 +2,15 @@
 import Base from '../layouts/Base.astro';
 import HeroDiagram from './HeroDiagram.astro';
 import { SITE, cvPdf, home, routes, ui, type Lang } from '../i18n/content';
+import { latestPosts } from '../lib/blog';
 
 interface Props { lang: Lang }
 
 const { lang } = Astro.props;
 const c = home[lang];
 const nav = ui[lang].nav;
+const posts = await latestPosts(3);
+const dateFmt = new Intl.DateTimeFormat(lang === 'es' ? 'es-ES' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -33,6 +36,7 @@ const jsonLd = {
     <li><a href="#sobre-mi">{nav.about}</a></li>
     <li class="hide-xs"><a href="#experiencia">{nav.experience}</a></li>
     <li class="hide-sm"><a href="#proyectos">{nav.projects}</a></li>
+    <li class="hide-sm"><a href={routes.homelab[lang]}>{nav.homelab}</a></li>
     <li><a href={routes.cv[lang]}>{nav.cv}</a></li>
     <li><a href="#contacto">{nav.contact}</a></li>
   </Fragment>
@@ -149,6 +153,25 @@ const jsonLd = {
         </ul>
       </div>
     </section>
+
+    {posts.length > 0 && (
+      <section id="blog" class="block" aria-labelledby="blog-title">
+        <h2 class="block-title" id="blog-title">{c.blogFeed.title}</h2>
+        <div class="block-body">
+          <p class="lede">{c.blogFeed.intro}</p>
+          <ul class="posts">
+            {posts.map((p) => (
+              <li lang="es">
+                <time datetime={p.date.toISOString()}>{dateFmt.format(p.date)}</time>
+                <h3><a href={p.href}>{p.title}</a></h3>
+                <p>{p.description}</p>
+              </li>
+            ))}
+          </ul>
+          <a class="more-link" href={SITE.blog}>{c.blogFeed.all}</a>
+        </div>
+      </section>
+    )}
 
     <section id="busco" class="block" aria-labelledby="seeking-title">
       <h2 class="block-title" id="seeking-title">{c.seeking.title}</h2>
