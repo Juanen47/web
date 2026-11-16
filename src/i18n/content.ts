@@ -53,7 +53,7 @@ export const home = {
   es: {
     title: 'Juan Enrique López Monteagudo · Administrador de Sistemas y Redes',
     description:
-      'Administrador de sistemas y redes especializado en ciberseguridad, en Albacete. Firewalls SonicWall y Fortinet, redes MikroTik y Aruba, telefonía IP 3CX, vSphere, Proxmox, Azure y homelab self-hosted.',
+      'Administrador de sistemas y redes especializado en ciberseguridad, en Albacete. Microsoft Defender, Entra ID y Azure, firewalls SonicWall y Fortinet, redes Aruba y MikroTik con VLAN, telefonía IP 3CX, vSphere, Proxmox y homelab self-hosted.',
     role: 'Administrador de <strong>sistemas y redes</strong> especializado en <strong>ciberseguridad</strong>. Mantengo infraestructuras seguras, vigiladas y bien documentadas, y en casa hago self-hosting de todo lo que puedo.',
     availability: 'Disponible para incorporación inmediata',
     cta: { contact: 'Contactar', blog: 'Leer el blog', cv: 'Descargar CV' },
@@ -75,13 +75,13 @@ export const home = {
     about: {
       title: 'Sobre mí',
       paragraphs: [
-        'Soy administrador de sistemas y redes en Albacete, especializado en ciberseguridad, con el Grado Superior de ASIR y el curso de especialización en Ciberseguridad. Mi día a día ha sido la red y la seguridad perimetral, la telefonía IP con 3CX, la virtualización, las copias de seguridad y el soporte a usuarios, tanto en infraestructura propia como en Azure.',
+        'Soy administrador de sistemas y redes en Albacete, especializado en ciberseguridad, con el Grado Superior de ASIR y el curso de especialización en Ciberseguridad. Mi día a día ha sido la seguridad de Microsoft 365 y Azure (alertas de Defender, Entra ID con acceso condicional), el análisis de logs y la respuesta a incidentes, la red y la seguridad perimetral, la telefonía IP con 3CX, la virtualización, las copias de seguridad y el soporte a usuarios.',
         'Me gusta que las cosas funcionen y que se pueda demostrar que funcionan: copias que se validan, alertas antes que incidencias y documentación que otro pueda seguir. Por eso fuera del trabajo mantengo un homelab sobre Proxmox, con un único puerto abierto (el de la VPN), copias diarias, 2FA y vigilancia propia, y cuento cada paso en el <a href="https://blog.jelopez.link">blog</a>.',
       ],
       facts: [
         { label: 'Ubicación', value: 'Albacete, España' },
-        { label: 'Idiomas', value: 'Español nativo · Inglés B2 lectura y escritura' },
-        { label: 'Enfoque', value: 'Seguridad, redes y virtualización' },
+        { label: 'Idiomas', value: 'Español nativo · Inglés con competencia básica profesional' },
+        { label: 'Enfoque', value: 'Seguridad Microsoft, redes y sistemas' },
       ],
     },
     experience: {
@@ -92,13 +92,17 @@ export const home = {
           company: 'Proceso de la Información CLM',
           period: 'jun 2025 – oct 2026',
           points: [
-            'Red y seguridad perimetral: firewalls SonicWall y Fortinet, routers MikroTik, switches HP ProCurve y Aruba 6200M.',
-            'Gestión centralizada de la red desde HPE Aruba Central y túneles VPN con WireGuard.',
-            'Telefonía IP: despliegue, puesta en marcha e incidencias de la centralita 3CX, con terminales Grandstream y Yealink, teléfonos de conferencia y videoporteros.',
-            'Virtualización con VMware vSphere y Proxmox; administración de entornos en Azure.',
-            'Copias de seguridad con Veeam Backup & Replication y Acronis, incluida su validación.',
-            'Active Directory en entorno híbrido y soporte técnico diario a usuarios.',
-            'Dashboards de monitorización a medida, desarrollados con ayuda de herramientas de IA como Claude Code.',
+            'Seguridad Microsoft: seguimiento de alertas en el portal de Microsoft Defender y Defender Antivirus en los equipos Windows; Intune de forma puntual y Microsoft Purview a nivel básico.',
+            'Microsoft Entra ID: políticas de acceso condicional y respuesta a incidentes por accesos no autorizados.',
+            'Microsoft 365: gestión de usuarios y licencias desde el centro de administración y Exchange Online.',
+            'Azure: despliegue y securización de máquinas virtuales con acceso restringido al personal autorizado, y VPN IPsec site-to-site entre Azure y un SonicWall NSA 3700.',
+            'Cortafuegos SonicWall NSA 3700 y TZ 570, FortiGate de forma puntual y túneles VPN con WireGuard.',
+            'Red corporativa segmentada en más de 10 VLAN, con switches HP ProCurve y Aruba 6200M gestionados desde HPE Aruba Central (cliente principal) y routers MikroTik en otros clientes.',
+            'Active Directory en entorno híbrido y virtualización con VMware vSphere y Proxmox.',
+            'Copias de seguridad con Veeam Backup & Replication y Acronis: realización y validación.',
+            'Monitorización con Checkmk, inventario con OCS Inventory y dashboards a medida desarrollados con apoyo de IA (Claude Code).',
+            'Telefonía IP: despliegue e incidencias de la centralita 3CX, con terminales Grandstream y Yealink, teléfonos de conferencia y videoporteros.',
+            'Soporte técnico a usuarios: atención y resolución de incidencias del día a día.',
           ],
         },
         {
@@ -106,8 +110,17 @@ export const home = {
           company: 'Via Office',
           period: 'jul – sep 2024',
           points: [
-            'Gestión de la base de datos Velneo a nivel de usuario.',
-            'Instalación de paquetes ofimáticos y resolución de problemas técnicos.',
+            'Gestión de la base de datos del ERP Velneo a nivel de usuario.',
+            'Instalación de software y resolución de incidencias.',
+          ],
+        },
+        {
+          role: 'Técnico Informático en prácticas (FCT de ASIR)',
+          company: 'Exadi Business',
+          period: 'abr – jun 2023',
+          points: [
+            'Desarrollo de módulos sencillos con Velneo (ERP y lenguaje de programación).',
+            'Soporte técnico a usuarios.',
           ],
         },
         {
@@ -129,13 +142,15 @@ export const home = {
     skills: {
       title: 'Competencias',
       items: [
-        { title: 'Seguridad', text: 'Firewalls SonicWall y Fortinet, VPN con WireGuard, bastionado de sistemas, MFA (TOTP) y auditorías con Lynis.' },
-        { title: 'Redes', text: 'Routers MikroTik, switches HP ProCurve y Aruba 6200M, gestión centralizada con HPE Aruba Central.' },
-        { title: 'Virtualización y cloud', text: 'VMware vSphere, Proxmox VE con contenedores LXC y Microsoft Azure.' },
+        { title: 'Seguridad Microsoft', text: 'Microsoft Defender (seguimiento de alertas) y Defender Antivirus, Entra ID con acceso condicional, Intune (puntual) y Purview (básico).' },
+        { title: 'Análisis de logs y alertas', text: 'Eventos de Windows, registros de los cortafuegos SonicWall, inicios de sesión de Entra ID y alertas de Checkmk, con respuesta a incidentes.' },
+        { title: 'Seguridad perimetral', text: 'SonicWall NSA 3700 y TZ 570, Fortinet FortiGate, VPN IPsec site-to-site y WireGuard, bastionado de sistemas y auditorías con Lynis.' },
+        { title: 'Redes', text: 'Switches HP ProCurve y Aruba 6200M, gestión centralizada con HPE Aruba Central, routers MikroTik y segmentación con VLAN.' },
+        { title: 'Sistemas y nube', text: 'Windows y Linux, Active Directory híbrido, Exchange Online, licencias de Microsoft 365 y máquinas virtuales en Azure.' },
+        { title: 'Virtualización y copias', text: 'VMware vSphere, Proxmox VE con contenedores LXC, Veeam Backup & Replication y Acronis.' },
+        { title: 'Monitorización e inventario', text: 'Checkmk y OCS Inventory; en el homelab, Uptime Kuma, Healthchecks.io y un panel propio.' },
         { title: 'Telefonía IP', text: 'Centralita 3CX (VoIP/SIP), terminales Grandstream y Yealink, teléfonos de conferencia y videoporteros.' },
-        { title: 'Copias de seguridad', text: 'Veeam Backup & Replication y Acronis: realización y validación de copias.' },
-        { title: 'Sistemas', text: 'Windows Server y Linux, Active Directory en entorno híbrido, M365 y soporte a usuarios.' },
-        { title: 'Scripting y monitorización', text: 'PowerShell, Bash y SQL. Uptime Kuma, Netdata y dashboards a medida.' },
+        { title: 'Scripting y otros', text: 'Bash, PowerShell y SQL; Velneo (ERP).' },
       ],
     },
     homelab: {
@@ -227,7 +242,7 @@ export const home = {
   en: {
     title: 'Juan Enrique López Monteagudo · Systems & Network Administrator',
     description:
-      'Systems and network administrator specialised in cybersecurity, based in Albacete, Spain. SonicWall and Fortinet firewalls, MikroTik and Aruba networks, 3CX IP telephony, vSphere, Proxmox, Azure and a self-hosted homelab.',
+      'Systems and network administrator specialised in cybersecurity, based in Albacete, Spain. Microsoft Defender, Entra ID and Azure, SonicWall and Fortinet firewalls, Aruba and MikroTik networks with VLANs, 3CX IP telephony, vSphere, Proxmox and a self-hosted homelab.',
     role: '<strong>Systems and network</strong> administrator specialised in <strong>cybersecurity</strong>. I keep infrastructure secure, monitored and well documented, and at home I self-host everything I can.',
     availability: 'Available to start immediately',
     cta: { contact: 'Get in touch', blog: 'Read the blog', cv: 'Download CV' },
@@ -249,13 +264,13 @@ export const home = {
     about: {
       title: 'About',
       paragraphs: [
-        'I am a systems and network administrator based in Albacete, Spain, specialised in cybersecurity, with a Higher National Diploma in Networked Systems Administration (ASIR) and a specialisation course in Cybersecurity. My day-to-day work has covered networking and perimeter security, 3CX IP telephony, virtualisation, backups and user support, both on-premises and in Azure.',
+        'I am a systems and network administrator based in Albacete, Spain, specialised in cybersecurity, with a Higher National Diploma in Networked Systems Administration (ASIR) and a specialisation course in Cybersecurity. My day-to-day work has covered Microsoft 365 and Azure security (Defender alerts, Entra ID conditional access), log analysis and incident response, networking and perimeter security, 3CX IP telephony, virtualisation, backups and user support.',
         'I like things to work and to be able to prove they work: backups that get validated, alerts before incidents and documentation someone else can follow. That is why outside work I run a homelab on Proxmox with a single open port (the VPN), daily backups, 2FA and my own monitoring, and write up every step on the <a href="https://blog.jelopez.link">blog</a> (in Spanish).',
       ],
       facts: [
         { label: 'Location', value: 'Albacete, Spain' },
-        { label: 'Languages', value: 'Spanish native · English B2 reading and writing' },
-        { label: 'Focus', value: 'Security, networking and virtualisation' },
+        { label: 'Languages', value: 'Spanish native · English, limited working proficiency' },
+        { label: 'Focus', value: 'Microsoft security, networking and systems' },
       ],
     },
     experience: {
@@ -266,13 +281,17 @@ export const home = {
           company: 'Proceso de la Información CLM',
           period: 'Jun 2025 – Oct 2026',
           points: [
-            'Network and perimeter security: SonicWall and Fortinet firewalls, MikroTik routers, HP ProCurve and Aruba 6200M switches.',
-            'Centralised network management with HPE Aruba Central and WireGuard VPN tunnels.',
-            'IP telephony: deployment, commissioning and troubleshooting of the 3CX PBX, with Grandstream and Yealink handsets, conference phones and video door entry systems.',
-            'Virtualisation with VMware vSphere and Proxmox; Azure administration.',
-            'Backups with Veeam Backup & Replication and Acronis, including restore validation.',
-            'Hybrid Active Directory and day-to-day user support.',
-            'Custom monitoring dashboards, built with the help of AI tools such as Claude Code.',
+            'Microsoft security: alert follow-up in the Microsoft Defender portal and Defender Antivirus on Windows endpoints; occasional Intune work and basic Microsoft Purview.',
+            'Microsoft Entra ID: Conditional Access policies and incident response to unauthorised sign-ins.',
+            'Microsoft 365: user and licence management from the admin centre and Exchange Online.',
+            'Azure: deployed and secured virtual machines with access restricted to authorised staff, and a site-to-site IPsec VPN between Azure and a SonicWall NSA 3700.',
+            'SonicWall NSA 3700 and TZ 570 firewalls, occasional FortiGate work and WireGuard VPN tunnels.',
+            'Corporate network segmented into more than 10 VLANs, with HP ProCurve and Aruba 6200M switches managed from HPE Aruba Central (main client) and MikroTik routers for other clients.',
+            'Hybrid Active Directory and virtualisation with VMware vSphere and Proxmox.',
+            'Backups with Veeam Backup & Replication and Acronis: running and validating them.',
+            'Monitoring with Checkmk, inventory with OCS Inventory and custom dashboards built with AI assistance (Claude Code).',
+            'IP telephony: deployment and troubleshooting of the 3CX PBX, with Grandstream and Yealink handsets, conference phones and video door entry systems.',
+            'User support: handling and resolving day-to-day incidents.',
           ],
         },
         {
@@ -280,8 +299,17 @@ export const home = {
           company: 'Via Office',
           period: 'Jul – Sep 2024',
           points: [
-            'User-level management of the Velneo database.',
-            'Office software installation and technical troubleshooting.',
+            'User-level management of the Velneo ERP database.',
+            'Software installation and troubleshooting.',
+          ],
+        },
+        {
+          role: 'IT Technician intern (ASIR work placement)',
+          company: 'Exadi Business',
+          period: 'Apr – Jun 2023',
+          points: [
+            'Built simple modules with Velneo (ERP and programming language).',
+            'User support.',
           ],
         },
         {
@@ -303,13 +331,15 @@ export const home = {
     skills: {
       title: 'Skills',
       items: [
-        { title: 'Security', text: 'SonicWall and Fortinet firewalls, WireGuard VPN, system hardening, MFA (TOTP) and Lynis audits.' },
-        { title: 'Networking', text: 'MikroTik routers, HP ProCurve and Aruba 6200M switches, centralised management with HPE Aruba Central.' },
-        { title: 'Virtualisation & cloud', text: 'VMware vSphere, Proxmox VE with LXC containers and Microsoft Azure.' },
+        { title: 'Microsoft security', text: 'Microsoft Defender (alert follow-up) and Defender Antivirus, Entra ID with Conditional Access, Intune (occasional) and Purview (basic).' },
+        { title: 'Log and alert analysis', text: 'Windows events, SonicWall firewall logs, Entra ID sign-ins and Checkmk alerts, with incident response.' },
+        { title: 'Perimeter security', text: 'SonicWall NSA 3700 and TZ 570, Fortinet FortiGate, site-to-site IPsec and WireGuard VPNs, system hardening and Lynis audits.' },
+        { title: 'Networking', text: 'HP ProCurve and Aruba 6200M switches, centralised management with HPE Aruba Central, MikroTik routers and VLAN segmentation.' },
+        { title: 'Systems & cloud', text: 'Windows and Linux, hybrid Active Directory, Exchange Online, Microsoft 365 licensing and Azure virtual machines.' },
+        { title: 'Virtualisation & backups', text: 'VMware vSphere, Proxmox VE with LXC containers, Veeam Backup & Replication and Acronis.' },
+        { title: 'Monitoring & inventory', text: 'Checkmk and OCS Inventory; in the homelab, Uptime Kuma, Healthchecks.io and a custom dashboard.' },
         { title: 'IP telephony', text: '3CX PBX (VoIP/SIP), Grandstream and Yealink handsets, conference phones and video door entry systems.' },
-        { title: 'Backups', text: 'Veeam Backup & Replication and Acronis: running and validating backups.' },
-        { title: 'Systems', text: 'Windows Server and Linux, hybrid Active Directory, M365 and user support.' },
-        { title: 'Scripting & monitoring', text: 'PowerShell, Bash and SQL. Uptime Kuma, Netdata and custom dashboards.' },
+        { title: 'Scripting & other', text: 'Bash, PowerShell and SQL; Velneo (ERP).' },
       ],
     },
     homelab: {
@@ -415,10 +445,10 @@ export const cvPage = {
     availability: 'Incorporación inmediata',
     profileTitle: 'Perfil',
     profile:
-      'Administrador de sistemas y redes con especialización en ciberseguridad. Experiencia en protección perimetral (SonicWall y Fortinet), redes MikroTik y Aruba, virtualización con vSphere y Proxmox, copias de seguridad, VPN con WireGuard, entornos cloud en Azure y telefonía IP con 3CX, además de soporte diario a usuarios. Me enfoco en mantener infraestructuras seguras, monitorizadas y bien documentadas.',
+      'Administrador de sistemas y redes con especialización en ciberseguridad. Experiencia en el entorno de seguridad de Microsoft (alertas en Microsoft Defender, Defender Antivirus, Entra ID con acceso condicional, Intune), análisis de logs y alertas, respuesta a incidentes, seguridad perimetral con SonicWall y Fortinet, redes segmentadas con VLAN, Azure, copias de seguridad y telefonía IP con 3CX. Me enfoco en mantener infraestructuras seguras, monitorizadas y bien documentadas.',
     projectsTitle: 'Proyectos personales',
     languagesTitle: 'Idiomas',
-    languages: 'Castellano nativo · Inglés B2 en lectura y escritura (sin certificar), expresión oral en mejora',
+    languages: 'Castellano nativo · Inglés: competencia básica profesional',
     portfolio: 'Portafolio y proyectos',
   },
   en: {
@@ -433,10 +463,10 @@ export const cvPage = {
     availability: 'Available immediately',
     profileTitle: 'Profile',
     profile:
-      'Systems and network administrator specialised in cybersecurity. Experience with perimeter security (SonicWall and Fortinet), MikroTik and Aruba networks, virtualisation with vSphere and Proxmox, backups, WireGuard VPNs, Azure cloud environments and 3CX IP telephony, plus day-to-day user support. I focus on keeping infrastructure secure, monitored and well documented.',
+      'Systems and network administrator specialised in cybersecurity. Experience with the Microsoft security stack (Microsoft Defender alerts, Defender Antivirus, Entra ID Conditional Access, Intune), log and alert analysis, incident response, perimeter security with SonicWall and Fortinet, VLAN-segmented networks, Azure, backups and 3CX IP telephony. I focus on keeping infrastructure secure, monitored and well documented.',
     projectsTitle: 'Personal projects',
     languagesTitle: 'Languages',
-    languages: 'Spanish native · English B2 reading and writing (not certified), speaking improving',
+    languages: 'Spanish native · English: limited working proficiency',
     portfolio: 'Portfolio and projects',
   },
 };
@@ -465,18 +495,18 @@ export const homelabPage = {
     servicesIntro: 'Cada uno en su contenedor, con su copia diaria y su artículo en el blog.',
     groups: [
       { name: 'Red y acceso', items: [
-        { name: 'WireGuard', text: 'VPN para entrar desde fuera. Es el único puerto abierto en el router.', href: '""" + B + """wireguard-acceso-remoto/' },
-        { name: 'AdGuard Home', text: 'DNS de toda la casa, con bloqueo de publicidad y nombres internos.', href: '""" + B + """adguard-home-dns/' },
-        { name: 'NPMplus', text: 'Proxy inverso con certificados válidos de Let’s Encrypt para los servicios internos.', href: '""" + B + """npmplus-reverse-proxy/' },
+        { name: 'WireGuard', text: 'VPN para entrar desde fuera. Es el único puerto abierto en el router.', href: 'https://blog.jelopez.link/blog/wireguard-acceso-remoto/' },
+        { name: 'AdGuard Home', text: 'DNS de toda la casa, con bloqueo de publicidad y nombres internos.', href: 'https://blog.jelopez.link/blog/adguard-home-dns/' },
+        { name: 'NPMplus', text: 'Proxy inverso con certificados válidos de Let’s Encrypt para los servicios internos.', href: 'https://blog.jelopez.link/blog/npmplus-reverse-proxy/' },
       ] },
       { name: 'Nube y multimedia', items: [
-        { name: 'Nextcloud', text: 'Nube personal para archivos y fotos, con 2FA y acceso solo desde casa o por VPN.', href: '""" + B + """nextcloud-nube-personal/' },
-        { name: 'Jellyfin', text: 'Películas y series, con transcodificación por hardware y la misma carpeta que Nextcloud.', href: '""" + B + """jellyfin-peliculas-series/' },
+        { name: 'Nextcloud', text: 'Nube personal para archivos y fotos, con 2FA y acceso solo desde casa o por VPN.', href: 'https://blog.jelopez.link/blog/nextcloud-nube-personal/' },
+        { name: 'Jellyfin', text: 'Películas y series, con transcodificación por hardware y la misma carpeta que Nextcloud.', href: 'https://blog.jelopez.link/blog/jellyfin-peliculas-series/' },
       ] },
       { name: 'Vigilancia y gestión', items: [
-        { name: 'Panel propio', text: 'Hecho en Python: estado, copias, registros y tareas de todo el homelab en una pantalla.', href: '""" + B + """panel-homelab-propio/' },
-        { name: 'Uptime Kuma', text: 'Comprueba cada servicio y avisa por Telegram si algo deja de responder.', href: '""" + B + """uptime-kuma-telegram/' },
-        { name: 'Healthchecks.io', text: 'Vigilancia desde fuera: si el servidor deja de mandar su latido, llega un aviso.', href: '""" + B + """homelab-esquemas-red/' },
+        { name: 'Panel propio', text: 'Hecho en Python: estado, copias, registros y tareas de todo el homelab en una pantalla.', href: 'https://blog.jelopez.link/blog/panel-homelab-propio/' },
+        { name: 'Uptime Kuma', text: 'Comprueba cada servicio y avisa por Telegram si algo deja de responder.', href: 'https://blog.jelopez.link/blog/uptime-kuma-telegram/' },
+        { name: 'Healthchecks.io', text: 'Vigilancia desde fuera: si el servidor deja de mandar su latido, llega un aviso.', href: 'https://blog.jelopez.link/blog/homelab-esquemas-red/' },
       ] },
     ],
     securityTitle: 'Seguridad',
@@ -494,9 +524,10 @@ export const homelabPage = {
       'Restauración probada: un contenedor se recupera entero desde la copia de la noche anterior.',
       'Aviso por correo si una copia falla y latido a un servicio externo cuando termina bien.',
       'Registros volcados a disco cada hora y snapshot antes de cada actualización.',
+      'Copia cifrada fuera de casa cada noche con restic en un almacenamiento de objetos en la UE, que completa la regla 3-2-1.',
     ],
     nextTitle: 'Lo siguiente',
-    next: 'Una copia fuera de casa, cifrada, para cumplir la regla 3-2-1 completa.',
+    next: 'Vigilar la salud de los discos con SMART y avisar antes de que fallen.',
     blogLink: 'Toda la serie en el blog: El homelab desde cero',
     blogHref: 'https://blog.jelopez.link/serie/el-homelab-desde-cero/',
     read: 'Leer el artículo',
@@ -522,18 +553,18 @@ export const homelabPage = {
     servicesIntro: 'Each one in its own container, with a daily backup and a write-up on the blog (in Spanish).',
     groups: [
       { name: 'Network & access', items: [
-        { name: 'WireGuard', text: 'VPN to get in from outside. It is the only port open on the router.', href: '""" + B + """wireguard-acceso-remoto/' },
-        { name: 'AdGuard Home', text: 'DNS for the whole house, with ad blocking and internal names.', href: '""" + B + """adguard-home-dns/' },
-        { name: 'NPMplus', text: 'Reverse proxy with valid Let’s Encrypt certificates for internal services.', href: '""" + B + """npmplus-reverse-proxy/' },
+        { name: 'WireGuard', text: 'VPN to get in from outside. It is the only port open on the router.', href: 'https://blog.jelopez.link/blog/wireguard-acceso-remoto/' },
+        { name: 'AdGuard Home', text: 'DNS for the whole house, with ad blocking and internal names.', href: 'https://blog.jelopez.link/blog/adguard-home-dns/' },
+        { name: 'NPMplus', text: 'Reverse proxy with valid Let’s Encrypt certificates for internal services.', href: 'https://blog.jelopez.link/blog/npmplus-reverse-proxy/' },
       ] },
       { name: 'Cloud & media', items: [
-        { name: 'Nextcloud', text: 'Personal cloud for files and photos, with 2FA and access only from home or over VPN.', href: '""" + B + """nextcloud-nube-personal/' },
-        { name: 'Jellyfin', text: 'Films and series, with hardware transcoding and the same folder as Nextcloud.', href: '""" + B + """jellyfin-peliculas-series/' },
+        { name: 'Nextcloud', text: 'Personal cloud for files and photos, with 2FA and access only from home or over VPN.', href: 'https://blog.jelopez.link/blog/nextcloud-nube-personal/' },
+        { name: 'Jellyfin', text: 'Films and series, with hardware transcoding and the same folder as Nextcloud.', href: 'https://blog.jelopez.link/blog/jellyfin-peliculas-series/' },
       ] },
       { name: 'Monitoring & management', items: [
-        { name: 'Custom dashboard', text: 'Built in Python: status, backups, logs and tasks for the whole homelab on one screen.', href: '""" + B + """panel-homelab-propio/' },
-        { name: 'Uptime Kuma', text: 'Checks every service and alerts on Telegram if something stops responding.', href: '""" + B + """uptime-kuma-telegram/' },
-        { name: 'Healthchecks.io', text: 'Monitoring from outside: if the server stops sending its heartbeat, an alert goes out.', href: '""" + B + """homelab-esquemas-red/' },
+        { name: 'Custom dashboard', text: 'Built in Python: status, backups, logs and tasks for the whole homelab on one screen.', href: 'https://blog.jelopez.link/blog/panel-homelab-propio/' },
+        { name: 'Uptime Kuma', text: 'Checks every service and alerts on Telegram if something stops responding.', href: 'https://blog.jelopez.link/blog/uptime-kuma-telegram/' },
+        { name: 'Healthchecks.io', text: 'Monitoring from outside: if the server stops sending its heartbeat, an alert goes out.', href: 'https://blog.jelopez.link/blog/homelab-esquemas-red/' },
       ] },
     ],
     securityTitle: 'Security',
@@ -551,9 +582,10 @@ export const homelabPage = {
       'Restores tested: a container comes back whole from last night’s backup.',
       'Email alert if a backup fails and a heartbeat to an external service when it succeeds.',
       'Logs flushed to disk every hour and a snapshot before every update.',
+      'Encrypted off-site copy every night with restic to EU object storage, completing the 3-2-1 rule.',
     ],
     nextTitle: 'Next up',
-    next: 'An encrypted off-site copy to complete the 3-2-1 rule.',
+    next: 'Monitoring disk health with SMART to get a warning before a drive fails.',
     blogLink: 'The full series on the blog (in Spanish): El homelab desde cero',
     blogHref: 'https://blog.jelopez.link/serie/el-homelab-desde-cero/',
     read: 'Read the post',
