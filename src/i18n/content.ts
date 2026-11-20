@@ -161,9 +161,18 @@ export const home = {
     },
     projects: {
       title: 'Proyectos',
-      intro: 'Casos reales del homelab y de esta web: qué problema había, qué hice y qué resultado dio. Cada uno está contado paso a paso en el blog.',
+      intro: 'Casos reales del homelab, de esta web y herramientas open source: qué problema había, qué hice y qué resultado dio. Cada uno está contado en el blog o en su repositorio.',
       labels: { problem: 'Reto', solution: 'Solución', result: 'Resultado' },
       items: [
+        {
+          title: 'segwatch: segmentación de red como código',
+          problem: 'Las VLAN y reglas de firewall cambian con el tiempo y nadie comprueba que el aislamiento sigue siendo el que se diseñó.',
+          solution: 'Una herramienta open source en Go: la política se escribe en YAML y unas sondas en cada red prueban TCP, UDP e ICMP contra un respondedor, coordinadas por un controlador con TLS 1.3.',
+          result: 'Versión 0.1.0 publicada con binarios firmados. Avisos (ntfy, webhook, Healthchecks), informe HTML, métricas para Prometheus y Checkmk, y soporte IPv6.',
+          tags: ['Go', 'VLAN', 'IPv6', 'Prometheus', 'Open source'],
+          href: 'https://github.com/Juanen47/segwatch',
+          link: 'Ver en GitHub',
+        },
         {
           title: 'Panel propio para el homelab',
           problem: 'El panel que usaba solo tenía accesos directos: para ver copias, DNS o VPN había que abrir cada servicio.',
@@ -350,9 +359,18 @@ export const home = {
     },
     projects: {
       title: 'Projects',
-      intro: 'Real cases from the homelab and this site: the problem, what I did and what came out of it. Each one is written up step by step on the blog (in Spanish).',
+      intro: 'Real cases from the homelab, this site and open source tools: the problem, what I did and what came out of it. Each one is written up on the blog (in Spanish) or in its repository.',
       labels: { problem: 'Challenge', solution: 'Solution', result: 'Result' },
       items: [
+        {
+          title: 'segwatch: network segmentation as code',
+          problem: 'VLANs and firewall rules drift over time, and nobody checks that isolation still matches the design.',
+          solution: 'An open source Go tool: the policy is written in YAML and probes on each network test TCP, UDP and ICMP against a responder, coordinated by a controller over TLS 1.3.',
+          result: 'Version 0.1.0 released with signed binaries. Alerts (ntfy, webhook, Healthchecks), an HTML report, Prometheus and Checkmk metrics, and IPv6 support.',
+          tags: ['Go', 'VLAN', 'IPv6', 'Prometheus', 'Open source'],
+          href: 'https://github.com/Juanen47/segwatch',
+          link: 'View on GitHub',
+        },
         {
           title: 'A custom homelab dashboard',
           problem: 'My old dashboard was just shortcuts: checking backups, DNS or the VPN meant opening each service.',
